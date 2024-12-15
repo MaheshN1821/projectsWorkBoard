@@ -1,0 +1,12 @@
+.projectPageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-content {
+  background-color: #ddb892;
+  width: 94%;
+  height: 100vh;
+  margin: 36px 20px;
+}

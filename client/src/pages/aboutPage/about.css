@@ -1,0 +1,19 @@
+.aboutPageContainer {
+  background-color: #9c6644;
+  color: white;
+  max-width: 100%;
+  height: fit-content;
+}
+
+.about-page-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-content {
+  background-color: #ddb892;
+  width: 94%;
+  height: 100vh;
+  margin: 36px 20px;
+}

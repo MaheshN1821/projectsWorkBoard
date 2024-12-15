@@ -1,0 +1,47 @@
+.studentContainer {
+  background-color: #6f6d6a;
+  height: fit-content;
+  color: #e7e6e6;
+  padding: 0px 0px 20px 0px;
+}
+
+.feat-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 20px 0px 20px;
+}
+
+.features {
+  width: 96%;
+  height: 80vh;
+  background-color: #9f9d9c;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.subFeature {
+  cursor: pointer;
+  width: 30vw;
+  height: 88px;
+  text-align: center;
+  align-content: center;
+  padding: 10px;
+  background-color: #878583;
+  color: rgb(34, 31, 31);
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 40px 30px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.subFeature:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in;
+  color: black;
+}

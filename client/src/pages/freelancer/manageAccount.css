@@ -1,0 +1,21 @@
+.freelancerContainer {
+  background-color: #016396;
+  height: fit-content;
+  color: #00131e;
+  padding: 0px 0px 20px 0px;
+}
+
+.free-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 20px 0px 20px;
+}
+
+.account-content {
+  width: 96%;
+  height: 80vh;
+  background-color: #1a72a0;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
