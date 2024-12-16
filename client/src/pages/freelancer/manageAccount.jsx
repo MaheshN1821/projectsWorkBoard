@@ -7,7 +7,21 @@ function ManageAccount() {
       <Header />
       <div className="free-wrapper">
         <div className="account-content">
-          {/* <div>
+          <div className="acc-title">Your Information</div>
+          <div className="twoCont">
+            <div className="acc-cont-1"></div>
+            <div className="acc-cont-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ManageAccount;
+
+{
+  /* <div>
             <span>Name:</span>
             <div>
               <input
@@ -18,16 +32,8 @@ function ManageAccount() {
                 disabled
               />
             </div>
-          </div> */}
-          <div></div>
-        </div>
-      </div>
-    </div>
-  );
+          </div> */
 }
-
-export default ManageAccount;
-
 //   <div class="mb-3 row">
 //     <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
 //     <div class="col-sm-10">

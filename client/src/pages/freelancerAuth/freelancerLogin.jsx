@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
-import "./studentLogin.css";
+import "./freelancerLogin.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function studentLogin() {
+function FreelancerLogin() {
   const {
     register,
     handleSubmit,
@@ -18,7 +18,7 @@ function studentLogin() {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/auth/student/login",
+        "http://localhost:3000/auth/freelancer/login",
         JSON.stringify(data),
         {
           headers: {
@@ -30,7 +30,8 @@ function studentLogin() {
 
       sessionStorage.setItem("userId", response.data.info._id);
       sessionStorage.setItem("accToken", response.data.accessToken);
-      response.status === 200 ? Navigate("/student") : "";
+
+      // response.status === 200 ? Navigate("/freelancer") : "";
     } catch (err) {
       err.response.status === 400
         ? setLoginErrors(true)
@@ -42,23 +43,13 @@ function studentLogin() {
     }
   };
 
-  const registerOptions = {
+  const loginOptions = {
     username: {
       required: "Username is required",
       maxLength: { value: 20, message: "Maximum length is 20" },
     },
     password: {
       required: "Password is required",
-      // pattern: {
-      //   value:
-      //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-      //   message:
-      //     "Password must contain at least 1 uppercase, 1 lowercase, 1 digit, and 1 special character",
-      // },
-      // minLength: {
-      //   value: 8,
-      //   message: "Minimum length is 8 characters",
-      // },
     },
   };
 
@@ -77,7 +68,7 @@ function studentLogin() {
               name="username"
               id="username"
               placeholder=" "
-              {...register("username", registerOptions.username)}
+              {...register("username", loginOptions.username)}
             ></input>
             <label htmlFor="username">Full Name</label>
             <svg
@@ -101,7 +92,7 @@ function studentLogin() {
               name="password"
               id="userPassword"
               placeholder=" "
-              {...register("password", registerOptions.password)}
+              {...register("password", loginOptions.password)}
             />
             <label htmlFor="userPassword">Password</label>
             <svg
@@ -137,9 +128,9 @@ function studentLogin() {
             ""
           )}
           <span className="link">
-            <span>New student? </span>
+            <span>New freelancer? </span>
             <span
-              onClick={() => Navigate("/student/register")}
+              onClick={() => Navigate("/freelancer/register")}
               style={{ cursor: "pointer", fontWeight: "bold" }}
             >
               SignUp
@@ -151,4 +142,4 @@ function studentLogin() {
   );
 }
 
-export default studentLogin;
+export default FreelancerLogin;

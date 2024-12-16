@@ -43,10 +43,10 @@ function StudentLogin() {
     }
   };
 
-  const registerOptions = {
+  const loginOptions = {
     username: {
       required: "Username is required",
-      // maxLength: { value: 20, message: "Maximum length is 20" },
+      maxLength: { value: 20, message: "Maximum length is 20" },
     },
     password: {
       required: "Password is required",
@@ -68,7 +68,7 @@ function StudentLogin() {
               name="username"
               id="username"
               placeholder=" "
-              {...register("username", registerOptions.username)}
+              {...register("username", loginOptions.username)}
             ></input>
             <label htmlFor="username">Full Name</label>
             <svg
@@ -92,7 +92,7 @@ function StudentLogin() {
               name="password"
               id="userPassword"
               placeholder=" "
-              {...register("password", registerOptions.password)}
+              {...register("password", loginOptions.password)}
             />
             <label htmlFor="userPassword">Password</label>
             <svg

@@ -58,7 +58,14 @@ function Navbar() {
             >
               Student
             </p>
-            <p className="sub">Freelancer</p>
+            <p
+              className="sub"
+              onClick={() => {
+                Navigate("/freelancer/login");
+              }}
+            >
+              Freelancer
+            </p>
           </div>
         </div>
       </div>

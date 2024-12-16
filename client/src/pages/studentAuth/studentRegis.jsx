@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import "./StudentRegis.css";
+import "./studentRegis.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -28,7 +28,7 @@ function StudentRegis() {
 
       console.log(response);
 
-      // response.status === 200 ? Navigate("/student") : "";
+      response.status === 200 ? Navigate("/student/login") : "";
     } catch (err) {
       console.log(err);
     }

@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
-import "./studentRegis.css";
+import "./freelancerRegis.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../utils/api";
+import axios from "axios";
 
-function studentRegis() {
+function FreelancerRegis() {
   const {
     register,
     handleSubmit,
@@ -16,8 +16,8 @@ function studentRegis() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await api.post(
-        "http://localhost:3000/auth/student/register",
+      const response = await axios.post(
+        "http://localhost:3000/auth/freelancer/register",
         JSON.stringify(data),
         {
           headers: {
@@ -26,7 +26,7 @@ function studentRegis() {
         }
       );
 
-      response.status === 200 ? Navigate("/student") : "";
+      response.status === 200 ? Navigate("/freelancer/login") : "";
     } catch (err) {
       console.log(err);
     }
@@ -149,9 +149,9 @@ function studentRegis() {
             <button className="btn">SignUp</button>
           </div>
           <span className="link">
-            <span>Already have a student Account? </span>
+            <span>Already have a Freelancer Account? </span>
             <span
-              onClick={() => Navigate("/student/login")}
+              onClick={() => Navigate("/freelancer/login")}
               style={{ cursor: "pointer", fontWeight: "bold" }}
             >
               Login
@@ -163,4 +163,4 @@ function studentRegis() {
   );
 }
 
-export default studentRegis;
+export default FreelancerRegis;

@@ -1,7 +1,8 @@
 .freelancerContainer {
   background-color: #016396;
   height: fit-content;
-  color: #00131e;
+  /* color: #00131e; */
+  color: aliceblue;
   padding: 0px 0px 20px 0px;
 }
 
@@ -14,8 +15,39 @@
 
 .account-content {
   width: 96%;
-  height: 80vh;
+  height: fit-content;
   background-color: #1a72a0;
+  padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.acc-title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0px 0px 20px 0px;
+}
+
+.twoCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.acc-cont-1 {
+  background-color: rgb(126, 188, 241);
+  width: 32%;
+  height: 50vh;
+  margin: 20px 10px 10px 10px;
+}
+
+.acc-cont-2 {
+  background-color: rgb(126, 188, 241);
+  width: 50%;
+  height: 90vh;
+  margin: 20px;
 }

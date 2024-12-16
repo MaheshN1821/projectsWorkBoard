@@ -1,0 +1,19 @@
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-details-container {
+  width: 90%;
+  height: 90vh;
+  border: 1px solid;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.p-title {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 500;
+}
