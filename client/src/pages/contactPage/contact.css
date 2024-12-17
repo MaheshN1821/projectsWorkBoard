@@ -1,6 +1,6 @@
 .contactPageContainer {
-  background-color: #9c6644;
-  color: white;
+  background: hsla(210, 90%, 80%, 1);
+  color: rgba(0, 0, 0, 0.747);
   max-width: 100%;
   height: fit-content;
 }
@@ -12,7 +12,7 @@
 }
 
 .contact-content {
-  background-color: #ddb892;
+  background-color: rgba(255, 255, 255, 0.432);
   width: 94%;
   height: 100vh;
   margin: 36px 20px;

@@ -1,6 +1,6 @@
 .landingPageContainer {
-  background-color: #9c6644;
-  color: white;
+  color: rgba(0, 0, 0, 0.747);
   max-width: 100%;
   height: fit-content;
+  background: hsla(210, 90%, 80%, 1);
 }

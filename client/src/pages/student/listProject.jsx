@@ -18,26 +18,57 @@ function ListProject() {
           onSubmit={handleSubmit(onProjectDetailSubmit)}
           className="project-details-form"
         >
-          <div>
-            <p>Enter project Title: </p>
+          <div className="single-form-cont">
+            <p className="form-heading">Enter project Title: </p>
             <input
               type="text"
               id="title"
               name="title"
               placeholder=" "
               {...register("title")}
+              required
             />
           </div>
-          <div>
-            <p>Enter project Description: </p>
-            <input
-              type="text"
+          <div className="single-form-cont">
+            <p className="form-heading">Enter project Description: </p>
+            <textarea
               id="description"
-              name="description"
-              placeholder=" "
+              placeholder="In less than 200 words"
+              className="textArea"
+              required
               {...register("description")}
             />
           </div>
+          <div className="single-form-cont">
+            <p className="form-heading">Tech Stack required: </p>
+            <input
+              type="text"
+              id="stack"
+              name="stack"
+              placeholder=" "
+              {...register("stack")}
+              required
+            />
+          </div>
+          <div className="single-form-cont-date">
+            <p className="form-heading">Project to be completed by: </p>
+            <input
+              type="date"
+              id="completion"
+              name="completion"
+              className="date"
+              placeholder=" "
+              {...register("completion")}
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="form-btn"
+            onSubmit={handleSubmit(onProjectDetailSubmit)}
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>
