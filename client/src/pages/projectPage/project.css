@@ -7,6 +7,46 @@
 .project-content {
   background-color: rgba(255, 255, 255, 0.432);
   width: 94%;
-  height: 100vh;
+  height: fit-content;
   margin: 36px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.proj-head {
+  margin: 40px 0px 20px 0px;
+}
+
+.project-main {
+  width: 94%;
+  height: fit-content;
+  /* border: 1px solid; */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 10px;
+  margin-bottom: 60px;
+  /* background: rgba(158, 204, 250, 0.425); */
+}
+
+.card-display {
+  /* border: 1px solid; */
+  width: 50%;
+  height: fit-content;
+  margin: 0px 6px 6px 6px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background: rgba(158, 204, 250, 0.425); */
+}
+
+.additional-info {
+  border: 1px solid;
+  width: 50%;
+  height: 80vh;
+  margin: 6px;
 }

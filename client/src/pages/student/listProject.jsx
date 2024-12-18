@@ -13,13 +13,13 @@ function ListProject() {
     <div className="listContainer">
       <Header />
       <div className="project-details-container">
-        <div className="p-title">Project Details:</div>
+        <div className="p-title">Project Details</div>
         <form
           onSubmit={handleSubmit(onProjectDetailSubmit)}
           className="project-details-form"
         >
           <div className="single-form-cont">
-            <p className="form-heading">Enter project Title: </p>
+            <p className="form-heading">Enter Project Title: </p>
             <input
               type="text"
               id="title"
@@ -30,7 +30,7 @@ function ListProject() {
             />
           </div>
           <div className="single-form-cont">
-            <p className="form-heading">Enter project Description: </p>
+            <p className="form-heading">Enter Project Description: </p>
             <textarea
               id="description"
               placeholder="In less than 200 words"

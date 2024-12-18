@@ -18,7 +18,7 @@ function Student() {
             >
               List a Project
             </div>
-            <div className="subFeature">View previous listed Projects</div>
+            <div className="subFeature">View Listed Projects</div>
           </div>
           <div>
             <div className="subFeature">View Responses</div>
