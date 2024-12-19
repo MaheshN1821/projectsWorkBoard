@@ -11,6 +11,7 @@ import ManageAccount from "./pages/freelancer/manageAccount";
 import FreelancerLogin from "./pages/freelancerAuth/freelancerLogin";
 import FreelancerRegis from "./pages/freelancerAuth/freelancerRegis";
 import ListProject from "./pages/student/listProject";
+import ViewProject from "./pages/student/viewProject";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/freelancer" element={<Freelancer />} />
         <Route path="/freelancer/manage-account" element={<ManageAccount />} />
         <Route path="/student/list-project" element={<ListProject />} />
+        <Route path="/student/view-project" element={<ViewProject />} />
       </Routes>
     </>
   );

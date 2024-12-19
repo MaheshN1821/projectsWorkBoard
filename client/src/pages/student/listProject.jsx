@@ -13,7 +13,7 @@ function ListProject() {
     <div className="listContainer">
       <Header />
       <div className="project-details-container">
-        <div className="p-title">Project Details</div>
+        <div className="p-title">Enter Project Details</div>
         <form
           onSubmit={handleSubmit(onProjectDetailSubmit)}
           className="project-details-form"
