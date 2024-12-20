@@ -1,7 +1,7 @@
 .backg {
   background-color: #d3e3fd;
   width: 100%;
-  height: 100vh;
+  height: fit-content;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,9 +9,10 @@
 
 .studentRegContainer {
   width: 440px;
-  height: 90vh;
+  height: fit-content;
+  margin: 49px 0px;
   border: 1px solid black;
-  padding: 20px;
+  padding: 50px 20px;
   border-radius: 2px;
   display: flex;
   flex-direction: column;

@@ -4,6 +4,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 function FreelancerLogin() {
   const {
     register,
@@ -14,6 +18,8 @@ function FreelancerLogin() {
   const [loginErrors, setLoginErrors] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const Navigate = useNavigate();
+
+  const notifyFailure = () => toast.error("Invalid Credentials!");
 
   const onSubmit = async (data) => {
     try {
@@ -28,25 +34,24 @@ function FreelancerLogin() {
         }
       );
 
-      sessionStorage.setItem("userId", response.data.info._id);
-      sessionStorage.setItem("accToken", response.data.accessToken);
+      sessionStorage.setItem("freelancerId", response.data._id);
+      sessionStorage.setItem("freelancerAccToken", response.data.accessToken);
 
-      // response.status === 200 ? Navigate("/freelancer") : "";
+      response.status === 200 ? Navigate("/freelancer") : "";
     } catch (err) {
-      err.response.status === 400
-        ? setLoginErrors(true)
-        : setLoginErrors(false);
-      err.response.status === 401
-        ? setLoginErrors(true)
-        : setLoginErrors(false);
+      if (err.response.status === 400 || err.response.status === 401) {
+        setLoginErrors(true);
+        notifyFailure();
+      } else {
+        console.error("Unexpected error: ", err.response.status);
+      }
       console.log(err);
     }
   };
 
   const loginOptions = {
-    username: {
-      required: "Username is required",
-      maxLength: { value: 20, message: "Maximum length is 20" },
+    email: {
+      required: "Email is required",
     },
     password: {
       required: "Password is required",
@@ -64,13 +69,13 @@ function FreelancerLogin() {
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <div className="input-field contPos">
             <input
-              type="text"
-              name="username"
-              id="username"
+              type="email"
+              name="email"
+              id="email"
               placeholder=" "
-              {...register("username", loginOptions.username)}
+              {...register("email", loginOptions.email)}
             ></input>
-            <label htmlFor="username">Full Name</label>
+            <label htmlFor="email">Email</label>
             <svg
               className="svgEdit"
               height="20"
@@ -83,8 +88,8 @@ function FreelancerLogin() {
               </g>
             </svg>
           </div>
-          {errors.username && (
-            <span className="studentErrReg">{errors.username.message}</span>
+          {errors.email && (
+            <span className="studentErrReg">{errors.email.message}</span>
           )}
           <div className="input-field contPos">
             <input
@@ -119,7 +124,10 @@ function FreelancerLogin() {
                 color: "red",
                 textAlign: "center",
                 margin: "-24px 0px 12px 0px",
-                fontSize: "1.6rem",
+                fontSize: "1.4rem",
+                padding: "5px",
+                backgroundColor: "rgba(255, 255, 255, 0.774)",
+                fontWeight: "600",
               }}
             >
               Invalid Credentials!
@@ -138,6 +146,19 @@ function FreelancerLogin() {
           </span>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
     </div>
   );
 }
