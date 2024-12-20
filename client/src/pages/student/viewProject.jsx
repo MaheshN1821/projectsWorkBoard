@@ -1,3 +1,4 @@
+import ListedProject from "../../components/card/listed-project/listedProject";
 import Header from "../../components/header/header";
 import "./viewProject.css";
 
@@ -7,7 +8,10 @@ function ViewProject() {
       <Header />
       <div className="view-project-details-container">
         <div className="p-title">Listed Projects</div>
-        <div className="some-cont"></div>
+        <div className="some-cont">
+          <ListedProject />
+          <ListedProject />
+        </div>
       </div>
     </div>
   );

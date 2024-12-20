@@ -7,7 +7,7 @@
 
 .view-project-details-container {
   width: 90%;
-  height: 100vh;
+  height: fit-content;
   padding: 10px;
   margin-bottom: 20px;
   display: flex;
@@ -31,8 +31,13 @@
 }
 
 .some-cont {
-  height: 60vh;
-  width: 100%;
+  height: fit-content;
+  width: 92%;
   border: 1px solid;
   margin: 20px 10px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
