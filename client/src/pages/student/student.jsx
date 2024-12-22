@@ -28,7 +28,14 @@ function Student() {
             </div>
           </div>
           <div>
-            <div className="subFeature">View Responses</div>
+            <div
+              className="subFeature"
+              onClick={() => {
+                Navigate("/student/track-project");
+              }}
+            >
+              Track a Project
+            </div>
             <div className="subFeature">Book a 1:1 session</div>
           </div>
         </div>

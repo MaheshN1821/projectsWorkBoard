@@ -3,8 +3,15 @@ import { useForm } from "react-hook-form";
 import "./listProject.css";
 import api from "../../utils/api.js";
 
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 function ListProject() {
   const { register, handleSubmit } = useForm();
+
+  const notifyFailure = () => toast.error("There was an error!Try again later");
+  const notifySuccess = () => toast.success("Project is Listed Successfully!");
 
   const onProjectDetailSubmit = async (data) => {
     const usrId = sessionStorage.getItem("studentId");
@@ -15,7 +22,9 @@ function ListProject() {
       const response = await api.post("/student/project-details", newData);
 
       console.log(response);
+      notifySuccess();
     } catch (err) {
+      notifyFailure();
       console.log(err);
     }
   };
@@ -76,7 +85,6 @@ function ListProject() {
                 <option value="1000">&#8377;1000</option>
                 <option value="2000">&#8377;2000</option>
                 <option value="3000">&#8377;3000</option>
-                <option value="3000">&#8377;3000</option>
                 <option value="4000">&#8377;4000</option>
                 <option value="5000">&#8377;5000</option>
                 <option value="6000">&#8377;6000</option>
@@ -108,6 +116,19 @@ function ListProject() {
           </button>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
     </div>
   );
 }

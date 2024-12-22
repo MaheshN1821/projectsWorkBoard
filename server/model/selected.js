@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const projectSchema = new mongoose.Schema({
+const selectedProjectSchema = new mongoose.Schema({
   project_title: {
     type: String,
     required: true,
@@ -37,6 +37,6 @@ const projectSchema = new mongoose.Schema({
   },
 });
 
-const Project = mongoose.model("project", projectSchema);
+const Selected = mongoose.model("selected", selectedProjectSchema);
 
-export default Project;
+export default Selected;

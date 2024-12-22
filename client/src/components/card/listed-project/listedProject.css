@@ -86,7 +86,8 @@
 .view-single-form-cont-date input[type="date"] {
   width: 200px;
   margin-left: 80px;
-  padding: 10px;
+  padding: 6px;
+  font-size: 1.2rem;
 }
 
 .view-form-btn {
@@ -112,4 +113,59 @@
 
 .view-single-form-cont input {
   margin-left: 100px;
+}
+
+.v-listed-desc {
+  padding: 10px 20px;
+  text-align: justify;
+  line-height: 1.5rem;
+}
+
+.v-ad {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+}
+
+.v-dd {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.v-side-stack {
+  padding: 5px 20px;
+  height: fit-content;
+}
+
+.v-side-deadline {
+  padding: 5px 20px;
+}
+
+.v-ab {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+  padding: 0px 0px 20px 20px;
+}
+
+.v-pp {
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.v-single-form-cont-price select {
+  padding: 6px 4px;
+  font-size: 1.2rem;
+}
+
+.v-single-form-cont-price select:first-child {
+  margin-left: 237px;
+}
+
+.v-single-form-cont-price span {
+  font-size: 1.4rem;
 }

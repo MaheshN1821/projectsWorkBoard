@@ -7,6 +7,12 @@ import handleUserAuth from "./routes/user.auth.route.js";
 import handlefreelancerAuth from "./routes/freelancer.auth.route.js";
 import handleRefreshToken from "./routes/refreshToken.route.js";
 import handleStudent from "./routes/student.route.js";
+import handleProject from "./routes/project.route.js";
+import handleChat from "./routes/chat.route.js";
+import handleSelected from "./routes/selected.route.js";
+
+import http from "http";
+import { Server } from "socket.io";
 
 dotenv.config();
 const app = express();
@@ -27,9 +33,38 @@ app.use("/auth/student", handleUserAuth);
 app.use("/auth/freelancer", handlefreelancerAuth);
 app.use("/refreshToken", handleRefreshToken);
 app.use("/student", handleStudent);
+app.use("/project", handleProject);
+app.use("/chat", handleChat);
+app.use("/selected", handleSelected);
 
 app.get("/", (req, res) => {
   res.send("Hello World");
+});
+
+const server = http.createServer(app);
+
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173",
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log("User Connected!", socket.id);
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with Id: ${socket.id} joined room: ${data}`);
+  });
+
+  socket.on("send_message", (data) => {
+    console.log(data.room, data.message);
+    socket.to(data.room).emit("receive_message", data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User Disconnected!", socket.id);
+  });
 });
 
 const PORT = process.env.PORT || 3300;
@@ -43,6 +78,10 @@ mongoose
     console.log(err);
   });
 
-app.listen(PORT, () => {
+// app.listen(PORT, () => {
+//   console.log(`Server is running in port ${PORT}`);
+// });
+
+server.listen(PORT, () => {
   console.log(`Server is running in port ${PORT}`);
 });

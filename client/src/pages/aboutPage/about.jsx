@@ -10,7 +10,6 @@ function About() {
       <div className="about-page-wrapper">
         <div className="about-content">
           <h1>This is About Page!</h1>
-          {/* add code here also remove the curly braces and above line*/}
         </div>
       </div>
     </div>

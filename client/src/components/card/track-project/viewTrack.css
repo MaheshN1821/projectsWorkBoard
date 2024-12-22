@@ -1,0 +1,32 @@
+.view-track-container {
+  width: 100%;
+  height: fit-content;
+  border: 1px solid;
+  margin: 10px;
+  padding: 10px;
+}
+
+.track-head {
+  border: 1px solid;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.track-contents {
+  border: 1px solid;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.track-options span {
+  cursor: pointer;
+}

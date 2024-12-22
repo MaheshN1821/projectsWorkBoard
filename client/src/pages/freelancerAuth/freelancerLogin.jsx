@@ -33,8 +33,9 @@ function FreelancerLogin() {
           withCredentials: true,
         }
       );
+      console.log(response);
 
-      sessionStorage.setItem("freelancerId", response.data._id);
+      sessionStorage.setItem("freelancerId", response.data.response._id);
       sessionStorage.setItem("freelancerAccToken", response.data.accessToken);
 
       response.status === 200 ? Navigate("/freelancer") : "";

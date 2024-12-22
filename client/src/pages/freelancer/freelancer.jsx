@@ -10,7 +10,14 @@ function Freelancer() {
       <div className="free-wrapper">
         <div className="free-features">
           <div>
-            <div className="free-subFeature">New Projects</div>
+            <div
+              className="free-subFeature"
+              onClick={() => {
+                Navigate("/freelancer/view-project");
+              }}
+            >
+              New Projects
+            </div>
             <div className="free-subFeature">Ongoing Projects</div>
           </div>
           <div>

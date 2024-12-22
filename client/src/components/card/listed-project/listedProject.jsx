@@ -1,23 +1,41 @@
 import { useForm } from "react-hook-form";
 import "./listedProject.css";
 import { useState } from "react";
+import api from "../../../utils/api";
 
-function ListedProject() {
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
+function ListedProject({ list, index }) {
   const { register, handleSubmit } = useForm();
   const [toDisplayContent, setToDisplayContent] = useState(false);
   const [toDisplayEditForm, setToDisplayEditForm] = useState(false);
 
+  const notifyFailure = () => toast.error("There was an error!Try again later");
+  const notifySuccess = () => toast.success("Project is Updated Successfully!");
+
   const onViewProjectDetailSubmit = async (data) => {
-    console.log(data);
+    const usrId = sessionStorage.getItem("studentId");
+    const newData = { ...data, userID: usrId, listId: list?._id };
+    try {
+      const response = await api.post(
+        "/student/project-details-update",
+        newData
+      );
+      console.log(response);
+      notifySuccess();
+    } catch (err) {
+      notifyFailure();
+      console.log(err);
+    }
   };
 
   return (
     <div className="listed-project-container">
       <div className="taskbar">
-        <span className="p-listed-slno">1</span>
-        <span className="p-listed-title">
-          Some Title Lorem ipsum dolor, sit amet
-        </span>
+        <span className="p-listed-slno">{index + 1}</span>
+        <span className="p-listed-title">{list?.project_title}</span>
         {/* <span className="p-listed-deadline">Deadline: 21/03/12</span> */}
         <span
           className="p-listed-status"
@@ -37,35 +55,35 @@ function ListedProject() {
         className="listed-other-contents"
         style={{ display: toDisplayContent ? "block" : "none" }}
       >
-        <div className="p-listed-stack">Tech stack: MERN</div>
-        <div className="p-listed-desc">
+        {/* <div className="p-listed-stack">Tech stack: MERN</div> */}
+        <div className="v-listed-desc">
           <span>Project Description: </span>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem
-          magnam itaque soluta fugit, at consequatur dolores veniam vitae libero
-          earum facere expedita iste animi ad placeat suscipit dolorem? Ex
-          soluta incidunt cum quidem dolorum eveniet rem doloribus ab veniam.
-          Eaque excepturi inventore labore! Itaque corrupti eum dolores aut
-          blanditiis quo nulla nihil culpa quae minima sed doloribus unde, quod,
-          accusamus excepturi dolorem iure nam inventore placeat nostrum, eius
-          aspernatur voluptas. In, esse a iure culpa fuga dolorum autem tenetur
-          magni vitae, vel voluptatibus! Impedit, minus nemo! Maiores dolore
-          veniam, earum quas eius aspernatur similique omnis laudantium
-          voluptates, alias nesciunt quibusdam. Officia numquam maiores quia
-          eveniet, vitae laudantium assumenda animi id perspiciatis quod dolor
-          repellat laborum earum corrupti qui debitis nulla fugiat ipsa alias
-          asperiores fuga. Aspernatur eos cumque facilis possimus autem ratione
-          placeat corrupti quos, iusto in odio, aliquid sunt velit. Quis animi
-          facilis illo eos ut qui quidem sint vero, corporis consectetur
-          officiis totam laudantium, eaque quod magni ab, accusamus blanditiis
-          maiores est corrupti ratione quam! Non consectetur repellendus ex
-          eveniet, maiores laudantium rem nihil dolore? Vel, praesentium!
-          Doloribus, aliquid, quidem, id perferendis praesentium quasi
-          repudiandae iste quibusdam accusantium excepturi voluptates eligendi!
-          Labore totam nulla illum impedit necessitatibus illo!
+          {list?.project_description}
         </div>
-        <div>Deadline: 21/02/12</div>
+        {/* <div>Deadline: 21/02/12</div>
         <div>Freelancer: Waiting</div>
-        <div>Status: Waiting</div>
+        <div>Status: Waiting</div> */}
+        <div className="v-ad">
+          <div className="v-side-stack">
+            <span className="v-dd">Tech Stack: </span>
+            {list?.techStack}
+          </div>
+          <div className="v-side-deadline">
+            <span className="v-dd">Deadline: </span>
+            {list?.deadline}
+          </div>
+        </div>
+        <div className="v-ab">
+          <div className="v-pp">
+            <span className="v-dd">Price Range: </span>
+            &#8377;{list?.min_price} - &#8377;
+            {list?.max_price}
+          </div>
+          <div className="v-side-deadline">
+            <span className="v-dd">Status: </span>
+            {list?.status}
+          </div>
+        </div>
       </div>
       <div
         className="listed-edit-form"
@@ -108,6 +126,31 @@ function ListedProject() {
             />
           </div>
           <div className="view-single-form-cont-date">
+            <p className="view-form-heading">Price Range </p>
+            <div className="v-single-form-cont-price">
+              <select name="minprice" id="minprice" {...register("minprice")}>
+                <option value="500">&#8377;500</option>
+                <option value="1000">&#8377;1000</option>
+                <option value="2000">&#8377;2000</option>
+                <option value="3000">&#8377;3000</option>
+              </select>
+              <span> to </span>
+              <select name="maxprice" id="maxprice" {...register("maxprice")}>
+                <option value="500">&#8377;500</option>
+                <option value="1000">&#8377;1000</option>
+                <option value="2000">&#8377;2000</option>
+                <option value="3000">&#8377;3000</option>
+                <option value="4000">&#8377;4000</option>
+                <option value="5000">&#8377;5000</option>
+                <option value="6000">&#8377;6000</option>
+                <option value="7000">&#8377;7000</option>
+                <option value="8000">&#8377;8000</option>
+                <option value="9000">&#8377;9000</option>
+                <option value="10000">&#8377;10000</option>
+              </select>
+            </div>
+          </div>
+          <div className="view-single-form-cont-date">
             <p className="view-form-heading">Project to be completed by: </p>
             <input
               type="date"
@@ -128,6 +171,19 @@ function ListedProject() {
           </button>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition:Bounce
+      />
     </div>
   );
 }
