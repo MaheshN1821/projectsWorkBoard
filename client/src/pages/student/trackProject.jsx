@@ -25,9 +25,17 @@ function TrackProject() {
       <Header />
       <div className="track-project-details-container">
         <div className="t-title">Ongoing Projects</div>
-        {trackData.map((singleTrack, index) => (
-          <ViewTrack key={index} singleTrack={singleTrack} index={index} />
-        ))}
+        <div className="track-out">
+          <div className="track-head">
+            <span className="t-sl">Sl no</span>
+            <span className="t-pt">Project Title</span>
+            <span className="t-fn">Freelancer Name</span>
+            <span className="t-a">Action</span>
+          </div>
+          {trackData.map((singleTrack, index) => (
+            <ViewTrack key={index} singleTrack={singleTrack} index={index} />
+          ))}
+        </div>
       </div>
     </div>
   );

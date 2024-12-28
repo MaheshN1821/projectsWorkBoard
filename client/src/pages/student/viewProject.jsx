@@ -6,6 +6,7 @@ import api from "../../utils/api";
 
 function ViewProject() {
   const [listData, setListData] = useState([]);
+  const [count, setCount] = useState(1);
 
   useEffect(() => {
     async function getDetails() {
@@ -19,7 +20,7 @@ function ViewProject() {
     }
 
     getDetails();
-  }, []);
+  }, [count]);
 
   return (
     <div className="viewListContainer">
@@ -27,8 +28,19 @@ function ViewProject() {
       <div className="view-project-details-container">
         <div className="p-title">Listed Projects</div>
         <div className="some-cont">
+          <div className="view-project-head">
+            <span className="view-listed-slno">Sl no</span>
+            <span className="view-listed-title">Project Title</span>
+            <span className="view-listed-action">Action</span>
+          </div>
           {listData.map((list, index) => (
-            <ListedProject key={index} list={list} index={index} />
+            <ListedProject
+              key={index}
+              list={list}
+              index={index}
+              setCount={setCount}
+              count={count}
+            />
           ))}
         </div>
       </div>

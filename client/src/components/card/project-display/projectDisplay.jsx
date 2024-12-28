@@ -14,18 +14,20 @@ function ProjectDisplay({ toDisplay, setToDisplay, projData }) {
       style={{ width: toDisplay ? "100%" : "50%" }}
     >
       <div className="outer-cont">
-        <div className="proj-title">{projData?.project_title}</div>
-        <div className="p-desc">{projData?.project_description}</div>
-        <div className="other-contents">
-          <div className="p-stack">
-            <b>Tech Stack:</b> {projData?.techStack}
+        <div className="border-card">
+          <div className="proj-title">{projData?.project_title}</div>
+          <div className="p-desc">{projData?.project_description}</div>
+          <div className="other-contents">
+            <div className="p-stack">
+              <b>Tech Stack:</b> {projData?.techStack}
+            </div>
+            <div className="p-time">
+              <b>Deadline:</b> {projData?.deadline}
+            </div>
           </div>
-          <div className="p-time">
-            <b>Deadline:</b> {projData?.deadline}
+          <div className="know-more" onClick={handleInfoClick}>
+            Click here to know more!
           </div>
-        </div>
-        <div className="know-more" onClick={handleInfoClick}>
-          Click here to know more!
         </div>
       </div>
     </div>

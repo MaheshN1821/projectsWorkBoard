@@ -1,24 +1,26 @@
 .listed-project-container {
   width: 100%;
   height: fit-content;
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .taskbar {
-  width: 98%;
+  width: 100%;
   height: fit-content;
   border: 1px solid;
-  padding: 10px;
-  font-size: 1.7rem;
+  border-top: none;
+  /* padding: 14px 10px; */
+  font-size: 1.5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  box-sizing: border-box;
 }
 
-.taskbar span:not(:nth-last-child(1)) {
+/* .taskbar span:not(:nth-last-child(1)) {
   margin: 0px 20px;
-}
+} */
 
 .p-listed-status {
   cursor: pointer;
@@ -168,4 +170,62 @@
 
 .v-single-form-cont-price span {
   font-size: 1.4rem;
+}
+
+.p-listed-slno {
+  width: 12.5%;
+  border-right: 1px solid;
+  padding: 14px 10px;
+  text-align: center;
+}
+
+.p-listed-title {
+  width: 50%;
+  border-right: 1px solid;
+  padding: 14px 10px;
+  text-align: center;
+}
+
+.opt-container {
+  width: 37.6%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.p-listed-full {
+  /* width: 12.5%; */
+  cursor: pointer;
+  /* border: 1px solid; */
+  padding: 3px 10px;
+  background-color: rgb(24, 190, 24);
+  color: white;
+}
+
+.p-listed-edit {
+  /* width: 12.5%; */
+  cursor: pointer;
+  /* border: 1px solid; */
+  padding: 3px 14px;
+  background-color: rgb(21, 190, 190);
+  color: white;
+}
+
+.p-listed-delete {
+  /* width: 12.5%; */
+  cursor: pointer;
+  /* border: 1px solid; */
+  background-color: rgba(255, 0, 0, 0.87);
+  padding: 3px 10px;
+  color: white;
+}
+
+.opt-container span:not(:hover) {
+  transform: scale(0.9);
+}
+
+.opt-container span:hover {
+  transform: scale(1.05);
 }

@@ -1,8 +1,11 @@
 .studentContainer {
-  background-color: #6f6d6a;
+  /* background-color: #6f6d6a; */
+  background-color: #1697ddc4;
+  /* background-color: #016396; */
   /* background-color: #f5f5f5; */
   height: fit-content;
-  color: #e7e6e6;
+  /* color: #e7e6e6; */
+  color: whitesmoke;
   padding: 0px 0px 20px 0px;
 }
 
@@ -16,7 +19,9 @@
 .features {
   width: 96%;
   height: 80vh;
-  background-color: #9f9d9c;
+  /* background-color: #9f9d9c; */
+  /* background-color: #1a72a0; */
+  background-color: #9eccfaea;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   display: flex;
@@ -32,8 +37,12 @@
   text-align: center;
   align-content: center;
   padding: 10px;
-  background-color: #878583;
-  color: rgb(34, 31, 31);
+  /* background-color: #878583;
+  color: rgb(34, 31, 31); */
+  /* background-color: #005a87e0; */
+  background-color: #1697dd83;
+  /* color: #b2d0df; */
+  color: aliceblue;
   font-size: 2rem;
   font-weight: 500;
   margin: 40px 30px;

@@ -1,7 +1,6 @@
 import "./chat.css";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
-// import api from "../../utils/api";
 
 const socket = io.connect("http://localhost:3000");
 
@@ -10,33 +9,24 @@ function Chat({ room, sid, fid }) {
   const [messageList, setMessageList] = useState([]);
 
   useEffect(() => {
-    // async function getMessage() {
-    //   const response = await api.post("/chat/getMessages");
-    //   console.log(response);
-    // }
-
-    // getMessage();
-
     if (sid && room) {
       socket.emit("join_room", room);
     }
 
+    if (fid && room) {
+      socket.emit("join_room", room);
+    }
+
     socket.on("receive_message", (data) => {
-      console.log(messageList);
       setMessageList((list) => [...list, data]);
     });
 
     return () => {
       socket.off("receive_message", (data) => {
-        console.log(messageList);
         setMessageList((list) => [...list, data]);
       });
     };
   }, [room]);
-
-  // const joinRoom = () => {
-
-  // };
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
@@ -52,26 +42,41 @@ function Chat({ room, sid, fid }) {
 
       await socket.emit("send_message", messageData);
       setMessageList((list) => [...list, messageData]);
-      setCurrentMessage("");
+      setCurrentMessage(" ");
     }
   };
 
   return (
     <div className="chat-container">
-      {/* <div onClick={joinRoom}>Start</div> */}
-      <div className="chat-title">Connect!</div>
       <div className="chat-body">
         {messageList.map((messageContent, index) => (
-          <h1 key={index + 1}>{messageContent.message}</h1>
+          <div
+            key={index + 1}
+            className="message"
+            id={sid === messageContent.author ? "you" : "other"}
+          >
+            <div>
+              <div className="message-content">
+                <p>{messageContent.message}</p>
+              </div>
+              <div className="message-meta">
+                <p id="time">{messageContent.time}</p>
+                <p id="author">{messageContent.author}</p>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
-      <div className="chat-send">
+      <div className="chat-send-cont">
         <input
+          className="chat-in"
           type="text"
           placeholder="Enter a message!"
           onChange={(e) => setCurrentMessage(e.target.value)}
         />
-        <button onClick={sendMessage}>Send</button>
+        <button onClick={sendMessage} className="chat-send">
+          Send
+        </button>
       </div>
     </div>
   );

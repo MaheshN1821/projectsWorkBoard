@@ -18,7 +18,14 @@ function Freelancer() {
             >
               New Projects
             </div>
-            <div className="free-subFeature">Ongoing Projects</div>
+            <div
+              className="free-subFeature"
+              onClick={() => {
+                Navigate("/freelancer/ongoing-project");
+              }}
+            >
+              Ongoing Projects
+            </div>
           </div>
           <div>
             <div className="free-subFeature">View Requests</div>

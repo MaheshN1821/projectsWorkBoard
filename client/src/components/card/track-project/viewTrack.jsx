@@ -2,40 +2,41 @@ import { useState } from "react";
 import "./viewTrack.css";
 import Chat from "../../chat/chat";
 
+// import { io } from "socket.io-client";
+// const socket = io.connect("http://localhost:3000");
+
 function ViewTrack({ singleTrack, index }) {
   const [displayChat, setDisplayChat] = useState(false);
 
   const room = singleTrack?._id;
   const sid = singleTrack?.student;
-  const fid = singleTrack?.freelancer;
 
   function handleChatClick() {
     setDisplayChat(!displayChat);
+    // if (sid && room) {
+    //   socket.emit("join_room", room);
+    // }
   }
 
   return (
     <div className="view-track-container">
-      <div className="track-head">
-        <span>Sl no</span>
-        <span>Project Title</span>
-        <span>Freelancer Name</span>
-        <span>Action</span>
-      </div>
       <div className="track-contents">
-        <div>{index + 1}</div>
-        <div>{singleTrack?.project_title}</div>
-        <div>{singleTrack?.freelancer}</div>
-        <div className="track-options">
-          <span onClick={handleChatClick}>Chat</span>
-          <span>Accept</span>
-          <span>Decline</span>
+        <div className="t-sl-c">{index + 1}</div>
+        <div className="t-pt-c">{singleTrack?.project_title}</div>
+        <div className="t-fn-c">{singleTrack?.freelancer}</div>
+        <div className="v-opt-container t-a-c">
+          <span onClick={handleChatClick} className="v-listed-chat">
+            Chat
+          </span>
+          <span className="v-listed-accept">Accept</span>
+          <span className="v-listed-decline">Decline</span>
         </div>
       </div>
       <div
         className="track-chat"
-        style={{ display: displayChat ? "block" : "none" }}
+        style={{ display: displayChat ? "flex" : "none" }}
       >
-        <Chat room={room} sid={sid} fid={fid} />
+        <Chat room={room} sid={sid} fid={""} />
       </div>
     </div>
   );

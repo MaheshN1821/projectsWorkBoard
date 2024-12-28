@@ -35,6 +35,9 @@ const selectedProjectSchema = new mongoose.Schema({
     type: Number,
     default: 500,
   },
+  room_string: {
+    type: String,
+  },
 });
 
 const Selected = mongoose.model("selected", selectedProjectSchema);

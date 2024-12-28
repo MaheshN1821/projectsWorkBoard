@@ -15,17 +15,31 @@
   background-color: #faf9f69c;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   margin: 10px 0px 20px 0px;
-  padding: 4px 10px 10px 10px;
+  padding: 4px 10px 6px 10px;
 }
 
 .proj-title {
   font-size: 1.6rem;
   font-weight: 500;
   margin: 20px 0px 10px 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.637);
   /* background-color: white; */
   width: 80%;
-  padding: 4px 10px;
+  padding: 5px 10px;
   text-align: center;
+}
+
+.border-card {
+  width: 96%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 14px 8px;
+}
+
+.outer-cont:hover .border-card {
+  border: 1px solid black;
 }
 
 .p-desc {

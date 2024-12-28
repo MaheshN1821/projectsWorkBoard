@@ -14,6 +14,7 @@ import ListProject from "./pages/student/listProject";
 import ViewProject from "./pages/student/viewProject";
 import TrackProject from "./pages/student/trackProject";
 import FreelancerView from "./pages/freelancer/freelancerView";
+import OngoingProject from "./pages/freelancer/ongoingProject";
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
         <Route path="/freelancer" element={<Freelancer />} />
         <Route path="/freelancer/manage-account" element={<ManageAccount />} />
         <Route path="/freelancer/view-project" element={<FreelancerView />} />
+        <Route
+          path="/freelancer/ongoing-project"
+          element={<OngoingProject />}
+        />
         <Route path="/student/list-project" element={<ListProject />} />
         <Route path="/student/view-project" element={<ViewProject />} />
         <Route path="/student/track-project" element={<TrackProject />} />

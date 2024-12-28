@@ -47,4 +47,20 @@ const handleProjectDetailsUpdation = async (req, res) => {
   }
 };
 
-export { handleProjectDetails, handleProjectDetailsUpdation };
+const handleProjectDetailsDeletion = async (req, res) => {
+  const info = req.body;
+  try {
+    const response = await Project.findByIdAndDelete(info?._id);
+
+    res.status(200).json({ message: "Deletion was Successfull!", response });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Try again later!" });
+  }
+};
+
+export {
+  handleProjectDetails,
+  handleProjectDetailsUpdation,
+  handleProjectDetailsDeletion,
+};

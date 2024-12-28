@@ -7,13 +7,14 @@ import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-function ListedProject({ list, index }) {
+function ListedProject({ list, index, setCount, count }) {
   const { register, handleSubmit } = useForm();
   const [toDisplayContent, setToDisplayContent] = useState(false);
   const [toDisplayEditForm, setToDisplayEditForm] = useState(false);
 
   const notifyFailure = () => toast.error("There was an error!Try again later");
   const notifySuccess = () => toast.success("Project is Updated Successfully!");
+  const notifyInfo = () => toast.info("Project Deleted Successfully!");
 
   const onViewProjectDetailSubmit = async (data) => {
     const usrId = sessionStorage.getItem("studentId");
@@ -25,9 +26,25 @@ function ListedProject({ list, index }) {
       );
       console.log(response);
       notifySuccess();
+      count < 1000 ? setCount(count + 1) : setCount(1);
     } catch (err) {
       notifyFailure();
       console.log(err);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      const response = await api.post(
+        "/student/project-details-deletion",
+        list
+      );
+      console.log(response);
+      count < 1000 ? setCount(count + 1) : setCount(1);
+      notifyInfo();
+    } catch (err) {
+      console.log(err);
+      notifyFailure();
     }
   };
 
@@ -37,19 +54,23 @@ function ListedProject({ list, index }) {
         <span className="p-listed-slno">{index + 1}</span>
         <span className="p-listed-title">{list?.project_title}</span>
         {/* <span className="p-listed-deadline">Deadline: 21/03/12</span> */}
-        <span
-          className="p-listed-status"
-          onClick={() => setToDisplayContent(!toDisplayContent)}
-        >
-          View Full
+        <span className="opt-container">
+          <span
+            className="p-listed-full"
+            onClick={() => setToDisplayContent(!toDisplayContent)}
+          >
+            View Full
+          </span>
+          <span
+            className="p-listed-edit"
+            onClick={() => setToDisplayEditForm(!toDisplayEditForm)}
+          >
+            Edit
+          </span>
+          <span className="p-listed-delete" onClick={handleDelete}>
+            Delete
+          </span>
         </span>
-        <span
-          className="p-listed-edit"
-          onClick={() => setToDisplayEditForm(!toDisplayEditForm)}
-        >
-          Edit
-        </span>
-        <span>Delete</span>
       </div>
       <div
         className="listed-other-contents"
@@ -175,7 +196,7 @@ function ListedProject({ list, index }) {
         position="top-right"
         autoClose={5000}
         hideProgressBar={false}
-        newestOnTop={false}
+        newestOnTop={true}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss

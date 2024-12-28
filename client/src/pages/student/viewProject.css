@@ -33,11 +33,45 @@
 .some-cont {
   height: fit-content;
   width: 92%;
-  border: 1px solid;
+  /* border: 1px solid; */
   margin: 20px 10px;
   padding: 20px 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #f5f5f548;
+}
+
+.view-project-head {
+  width: 100%;
+  border: 1px solid;
+  margin: 5px 5px 0px 5px;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-evenly; */
+  align-items: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  background-color: #f5f5f5;
+  box-sizing: border-box;
+}
+
+.view-listed-slno {
+  width: 12.5%;
+  /* border-right: 1px solid; */
+  padding: 14px 10px;
+  text-align: center;
+}
+
+.view-listed-title {
+  width: 50%;
+  /* border-right: 1px solid; */
+  padding: 14px 10px;
+  text-align: center;
+}
+
+.view-listed-action {
+  width: 37.5%;
+  text-align: center;
 }
