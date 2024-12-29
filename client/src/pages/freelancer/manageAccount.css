@@ -1,7 +1,205 @@
-.freelancerContainer {
+.freelancerContainer-1 {
   background-color: #016396;
   height: fit-content;
-  /* color: #00131e; */
+  color: aliceblue;
+  /* padding: 0px 0px 20px 0px; */
+}
+
+.free-wrapper-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin: 20px 20px 0px 20px; */
+}
+
+.account-content {
+  width: 100%;
+  height: fit-content;
+  background-color: white;
+  color: black;
+  padding: 20px;
+  /* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, */
+  /* rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.acc-title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0px 0px 20px 0px;
+}
+
+.twoCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* Ensure both containers are the same size */
+.acc-cont-1 {
+  background-color: rgba(0, 0, 0, 0.014);
+  color: #333;
+  width: 28%; /* Same width as acc-cont-1 */
+  height: fit-content;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px; */
+  /* box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px; */
+  /* box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;*/
+  /* box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px; */
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+.acc-cont-1 .profile-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #ddd;
+  margin-bottom: 20px;
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://via.placeholder.com/120");
+}
+
+.acc-cont-1 .info-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #016396;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.acc-cont-1 .info-item {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: #333;
+}
+
+.acc-cont-1 .info-item label {
+  font-weight: 500;
+}
+
+.acc-cont-1 .info-item .value {
+  font-weight: 400;
+  color: #333;
+}
+
+.info-head-1 {
+  margin: 20px 0px 40px 0px;
+  text-align: center;
+}
+
+.acc-cont-2 {
+  background-color: rgba(0, 0, 0, 0.014);
+  /* background-color: rgb(126, 188, 241); */
+  color: #333;
+  width: 50%; /* Same width as acc-cont-1 */
+  height: fit-content;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px; */
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+.acc-cont-2 .form-title {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #016396;
+}
+
+.acc-cont-2 .form-item-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.acc-cont-2 .form-item-container label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  width: 35%;
+  color: #333;
+}
+
+.acc-cont-2 .form-item-container input,
+.acc-cont-2 .form-item-container textarea {
+  width: 60%;
+  padding: 10px;
+  font-size: 1.1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.acc-cont-2 .form-item-container textarea {
+  height: 120px;
+  resize: none;
+}
+
+.acc-cont-2 .submit-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  background-color: #016396;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.acc-cont-2 .submit-btn:hover {
+  background-color: #014f7a;
+}
+
+@media (max-width: 768px) {
+  .acc-cont-1,
+  .acc-cont-2 {
+    width: 90%; /* Adjust both containers to be 90% width on smaller screens */
+    padding: 15px;
+  }
+
+  .acc-cont-2 .form-item-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .acc-cont-2 .form-item-container label {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .acc-cont-2 .form-item-container input,
+  .acc-cont-2 .form-item-container textarea {
+    width: 100%;
+  }
+}
+
+/* .freelancerContainer {
+  background-color: #016396;
+  height: fit-content;
+  color: #00131e;
   color: aliceblue;
   padding: 0px 0px 20px 0px;
 }
@@ -10,7 +208,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px 20px 0px 20px;
 }
 
 .account-content {
@@ -22,7 +219,7 @@
     rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   justify-content: center;
 }
 
@@ -50,4 +247,4 @@
   width: 50%;
   height: 90vh;
   margin: 20px;
-}
+} */

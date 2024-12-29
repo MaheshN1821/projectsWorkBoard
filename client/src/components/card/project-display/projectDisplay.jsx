@@ -19,14 +19,14 @@ function ProjectDisplay({ toDisplay, setToDisplay, projData }) {
           <div className="p-desc">{projData?.project_description}</div>
           <div className="other-contents">
             <div className="p-stack">
-              <b>Tech Stack:</b> {projData?.techStack}
+              <div className="p-t">Tech Stack</div> {projData?.techStack}
             </div>
             <div className="p-time">
-              <b>Deadline:</b> {projData?.deadline}
+              <div className="p-d">Deadline</div> {projData?.deadline}
             </div>
-          </div>
-          <div className="know-more" onClick={handleInfoClick}>
-            Click here to know more!
+            <div className="know-more" onClick={handleInfoClick}>
+              Click here to know more!
+            </div>
           </div>
         </div>
       </div>
