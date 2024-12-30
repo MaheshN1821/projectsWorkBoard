@@ -75,7 +75,7 @@ function StudentLogin() {
               placeholder=" "
               {...register("email", loginOptions.email)}
             ></input>
-            <label htmlFor="email">email</label>
+            <label htmlFor="email">Email</label>
             <svg
               className="svgEdit"
               height="20"

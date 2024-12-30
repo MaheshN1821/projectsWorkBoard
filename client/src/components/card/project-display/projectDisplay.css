@@ -105,6 +105,11 @@
   /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
   /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  /* background: rgba(158, 204, 250, 0.719); */
+  /* background: rgba(158, 204, 250, 0.616); */
+  /* background-color: rgba(17, 17, 26, 0.24); */
+  /* background-color: rgba(128, 128, 128, 0.301); */
+  background-color: #6daceccc;
 }
 
 .p-time {
@@ -117,6 +122,7 @@
   /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
   /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  background-color: #8ec4fa;
 }
 
 .know-more {
@@ -134,6 +140,7 @@
   /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
   /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  background-color: #6daceccc;
 }
 
 .p-t {

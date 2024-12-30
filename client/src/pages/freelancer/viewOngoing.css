@@ -25,21 +25,21 @@
 }
 
 .on-pt {
-  width: 40%;
+  width: 35%;
   text-align: center;
   border-right: 1px solid;
   padding: 8px;
 }
 
 .on-sn {
-  width: 25%;
+  width: 20%;
   text-align: center;
   border-right: 1px solid;
   padding: 8px;
 }
 
 .on-a {
-  width: 25%;
+  width: 35%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -80,4 +80,42 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.key-points {
+  cursor: pointer;
+  padding: 2px 8px;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(124, 24, 190);
+}
+
+.key-points-1 {
+  border: 1px solid;
+  border-top: none;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  /* align-items: center; */
+}
+
+.add-note {
+  cursor: pointer;
+  padding: 2px 8px;
+  cursor: pointer;
+  color: white;
+  font-size: 1.2rem;
+  margin: 10px;
+  background-color: rgb(24, 35, 190);
+}
+
+.display-note {
+  cursor: pointer;
+  padding: 2px 8px;
+  cursor: pointer;
+  color: white;
+  margin: 10px;
+  font-size: 1.2rem;
+  background-color: orange;
 }

@@ -2,20 +2,19 @@ import { useState } from "react";
 import "./viewOngoing.css";
 import Chat from "../../components/chat/chat";
 
-// import { io } from "socket.io-client";
-// const socket = io.connect("http://localhost:3000");
-
 function ViewOngoing({ ongoing, index }) {
   const [displayChat, setDisplayChat] = useState(false);
+  const [displayKeyPoints, setDisplayKeyPoints] = useState(false);
 
   const room = ongoing?._id;
   const fid = ongoing?.freelancer;
 
   function handleChatClick() {
     setDisplayChat(!displayChat);
-    // if (fid && room) {
-    //   socket.emit("join_room", room);
-    // }
+  }
+
+  function handleKeyPointsClick() {
+    setDisplayKeyPoints(!displayKeyPoints);
   }
 
   return (
@@ -28,8 +27,18 @@ function ViewOngoing({ ongoing, index }) {
           <span onClick={handleChatClick} className="on-chat">
             Chat
           </span>
+          <span onClick={handleKeyPointsClick} className="key-points">
+            Key Points
+          </span>
           <span className="on-complete">Completed</span>
         </div>
+      </div>
+      <div
+        className="key-points-1"
+        style={{ display: displayKeyPoints ? "flex" : "none" }}
+      >
+        <div className="add-note">Add Note</div>
+        <div className="display-note">Display Notes</div>
       </div>
       <div
         className="ongoing-chat"
