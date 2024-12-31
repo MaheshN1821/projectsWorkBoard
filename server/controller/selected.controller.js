@@ -34,4 +34,15 @@ const handleGetSelected = async (req, res) => {
   }
 };
 
-export { handleGetSelected, handleSaveSelected };
+const handleSingleStudentSelected = async (req, res) => {
+  const userId = req.params.userId;
+  try {
+    const response = await Selected.find({ student: userId });
+    res.status(200).json({ response });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Try again later!" });
+  }
+};
+
+export { handleGetSelected, handleSaveSelected, handleSingleStudentSelected };

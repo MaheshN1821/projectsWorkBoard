@@ -6,10 +6,11 @@ import ViewTrack from "../../components/card/track-project/viewTrack";
 
 function TrackProject() {
   const [trackData, setTrackData] = useState([]);
+  const userId = sessionStorage.getItem("studentId");
   useEffect(() => {
     async function getDetails() {
       try {
-        const response = await api.get("/selected/get");
+        const response = await api.get(`/selected/get/${userId}`);
         console.log(response.data.response);
         setTrackData(response.data.response);
       } catch (err) {
@@ -18,7 +19,7 @@ function TrackProject() {
     }
 
     getDetails();
-  }, []);
+  }, [userId]);
 
   return (
     <div className="trackContainer">

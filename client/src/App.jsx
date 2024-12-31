@@ -15,6 +15,7 @@ import ViewProject from "./pages/student/viewProject";
 import TrackProject from "./pages/student/trackProject";
 import FreelancerView from "./pages/freelancer/freelancerView";
 import OngoingProject from "./pages/freelancer/ongoingProject";
+import Payment from "./components/payment/payment";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/payment" element={<Payment />} />
         <Route path="/student/register" element={<StudentRegis />} />
         <Route path="/student/login" element={<StudentLogin />} />
         <Route path="/freelancer/register" element={<FreelancerRegis />} />

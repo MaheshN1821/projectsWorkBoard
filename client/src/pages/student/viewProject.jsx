@@ -8,10 +8,12 @@ function ViewProject() {
   const [listData, setListData] = useState([]);
   const [count, setCount] = useState(1);
 
+  const userId = sessionStorage.getItem("studentId");
+
   useEffect(() => {
     async function getDetails() {
       try {
-        const response = await api.get("/project/details");
+        const response = await api.get(`/project/details/${userId}`);
         console.log(response.data.info);
         setListData(response.data.info);
       } catch (err) {
@@ -20,7 +22,7 @@ function ViewProject() {
     }
 
     getDetails();
-  }, [count]);
+  }, [count, userId]);
 
   return (
     <div className="viewListContainer">

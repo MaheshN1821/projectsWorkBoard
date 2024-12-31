@@ -2,9 +2,6 @@ import { useState } from "react";
 import "./viewTrack.css";
 import Chat from "../../chat/chat";
 
-// import { io } from "socket.io-client";
-// const socket = io.connect("http://localhost:3000");
-
 function ViewTrack({ singleTrack, index }) {
   const [displayChat, setDisplayChat] = useState(false);
 
@@ -13,9 +10,6 @@ function ViewTrack({ singleTrack, index }) {
 
   function handleChatClick() {
     setDisplayChat(!displayChat);
-    // if (sid && room) {
-    //   socket.emit("join_room", room);
-    // }
   }
 
   return (

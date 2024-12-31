@@ -11,4 +11,17 @@ const handleProjectInfo = async (req, res) => {
   }
 };
 
-export default handleProjectInfo;
+const handleUserProjectDetails = async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    const info = await Project.find({ student: userId });
+
+    res.status(200).json({ info });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Try again later!" });
+  }
+};
+
+export { handleProjectInfo, handleUserProjectDetails };
