@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./viewOngoing.css";
 import Chat from "../../components/chat/chat";
+import api from "../../utils/api";
 
 function ViewOngoing({ ongoing, index }) {
   const [displayChat, setDisplayChat] = useState(false);
+  const [displayAddNote, setDisplayAddNote] = useState(false);
+  const [toDisplayNotes, setToDisplayNotes] = useState(false);
   const [displayKeyPoints, setDisplayKeyPoints] = useState(false);
+  const [studentName, setStudentName] = useState("M");
+  const [notes, setNotes] = useState("");
 
   const room = ongoing?._id;
   const fid = ongoing?.freelancer;
@@ -17,18 +22,67 @@ function ViewOngoing({ ongoing, index }) {
     setDisplayKeyPoints(!displayKeyPoints);
   }
 
+  function handleDisplayNotes() {
+    setToDisplayNotes(!toDisplayNotes);
+  }
+
+  async function handleDeletion() {
+    try {
+      const response = await api.post("/freelancer/delete-project", {
+        projId: ongoing._id,
+        freeId: ongoing?.freelancer,
+      });
+
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+      alert("Try again Later!");
+    }
+  }
+
+  async function handleNotesSave() {
+    const data = {
+      note: notes,
+      projectId: ongoing._id,
+      freelancer: ongoing.freelancer,
+    };
+    try {
+      const result = await api.post("/notes/save-note", data);
+
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    async function getName() {
+      try {
+        const result = await api.get(`/student/get-name/${ongoing?.student}`);
+        setStudentName(result.data.student_name);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    getName();
+  }, [ongoing?.student]);
+
   return (
     <div className="ongoing-track-container">
       <div className="ongoing-contents">
         <div className="on-sl">{index + 1}</div>
         <div className="on-pt">{ongoing?.project_title}</div>
-        <div className="on-sn">{ongoing?.student}</div>
+        <div className="on-sn">{studentName}</div>
         <div className="on-a">
           <span onClick={handleChatClick} className="on-chat">
             Chat
           </span>
           <span onClick={handleKeyPointsClick} className="key-points">
-            Key Points
+            KeyPoints
+          </span>
+          <span className="on-delete" onClick={handleDeletion}>
+            Delete
           </span>
           <span className="on-complete">Completed</span>
         </div>
@@ -37,8 +91,31 @@ function ViewOngoing({ ongoing, index }) {
         className="key-points-1"
         style={{ display: displayKeyPoints ? "flex" : "none" }}
       >
-        <div className="add-note">Add Note</div>
-        <div className="display-note">Display Notes</div>
+        <div
+          className="add-note"
+          onClick={() => setDisplayAddNote(!displayAddNote)}
+        >
+          Add Note
+        </div>
+        <div className="display-note" onClick={handleDisplayNotes}>
+          Display Notes
+        </div>
+      </div>
+      <div style={{ display: displayAddNote ? "flex" : "none" }}>
+        <div>
+          <label htmlFor="notes">Add your Notes</label>
+          <textarea
+            type="text"
+            name="notes"
+            id="notes"
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+          />
+          <span onClick={handleNotesSave}>Save</span>
+        </div>
+      </div>
+      <div style={{ display: toDisplayNotes ? "flex" : "none" }}>
+        Displaying Note!
       </div>
       <div
         className="ongoing-chat"

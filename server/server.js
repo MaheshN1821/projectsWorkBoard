@@ -8,9 +8,10 @@ import handlefreelancerAuth from "./routes/freelancer.auth.route.js";
 import handleRefreshToken from "./routes/refreshToken.route.js";
 import handleStudent from "./routes/student.route.js";
 import handleProject from "./routes/project.route.js";
-import handleChat from "./routes/chat.route.js";
 import handleSelected from "./routes/selected.route.js";
 import handlePayment from "./routes/payment.route.js";
+import handleFreelancerInformation from "./routes/freelancer.route.js";
+import handleNotes from "./routes/notes.route.js";
 
 import http from "http";
 import { Server } from "socket.io";
@@ -35,9 +36,10 @@ app.use("/auth/freelancer", handlefreelancerAuth);
 app.use("/refreshToken", handleRefreshToken);
 app.use("/student", handleStudent);
 app.use("/project", handleProject);
-app.use("/chat", handleChat);
+app.use("/notes", handleNotes);
 app.use("/selected", handleSelected);
 app.use("/payment", handlePayment);
+app.use("/freelancer", handleFreelancerInformation);
 
 app.get("/", (req, res) => {
   res.send("Hello World");

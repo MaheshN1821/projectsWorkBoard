@@ -1,4 +1,5 @@
 import Project from "../model/project.js";
+import User from "../model/user.js";
 
 const handleProjectDetails = async (req, res) => {
   const info = req.body;
@@ -59,8 +60,26 @@ const handleProjectDetailsDeletion = async (req, res) => {
   }
 };
 
+const handleStudentName = async (req, res) => {
+  const studId = req.params.sId;
+
+  try {
+    const studentName = await User.findById(studId);
+
+    if (!studentName) {
+      return res.status(404).json({ error: "Invalid Id" });
+    }
+
+    res.status(200).json({ student_name: studentName.username });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Try again Later!" });
+  }
+};
+
 export {
   handleProjectDetails,
   handleProjectDetailsUpdation,
   handleProjectDetailsDeletion,
+  handleStudentName,
 };

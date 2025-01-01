@@ -18,6 +18,18 @@ const freelancerSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  workedProjects: {
+    type: String,
+    default: "Not Specified",
+  },
+  techStack: {
+    type: String,
+    default: "Not Specified",
+  },
+  fimage: {
+    type: String,
+    default: "https://via.placeholder.com/120",
+  },
   password: {
     type: String,
     required: true,

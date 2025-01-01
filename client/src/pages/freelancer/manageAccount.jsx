@@ -1,61 +1,81 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import api from "../../utils/api.js";
 import Header from "../../components/header/header";
 import "./manageAccount.css";
 
+const freeId = sessionStorage.getItem("freelancerId");
+
 function ManageAccount() {
-  // State to store freelancer data
+  const { register, handleSubmit } = useForm();
   const [freelancer, setFreelancer] = useState({
-    name: "",
+    username: "",
+    phone_number: "",
+    address: "",
     email: "",
-    phoneNumber: "",
-    profileImageURL: "https://via.placeholder.com/120", // Default placeholder
-  });
-
-  // State to handle form data
-  const [formData, setFormData] = useState({
-    name: "",
-    projects: "",
+    workedProjects: "",
     techStack: "",
-    mobile: "",
-    email: "",
-    profileImage: null, // New state for profile image
+    fimage: "",
   });
 
-  // Handle form input change
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  const updateOptions = {
+    username: {
+      required: "Name is required",
+    },
+    phone_number: {
+      required: "Phone Number is required",
+    },
+    email: {
+      required: "Email is required",
+    },
+    address: {
+      required: "Address is required",
+    },
+    workedProjects: {
+      required: "Worked Projects is required",
+    },
+    techStack: {
+      required: "Tech Stack is required",
+    },
+    fimage: {
+      message: "Image Uploaded",
+    },
   };
 
-  // Handle profile image upload
-  const handleProfileImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData({
-          ...formData,
-          profileImage: reader.result, // Store the uploaded image URL
+  useEffect(() => {
+    async function getFreeData() {
+      try {
+        const result = await api.get(`/freelancer/${freeId}`);
+
+        setFreelancer({
+          username: result?.data?.info[0]?.username,
+          phone_number: result?.data?.info[0]?.phone_number,
+          address: result?.data?.info[0]?.address,
+          email: result?.data?.info[0]?.email,
+          workedProjects: result?.data?.info[0]?.workedProjects,
+          techStack: result?.data?.info[0]?.techStack,
+          fimage: result?.data?.info[0]?.fimage,
         });
-      };
-      reader.readAsDataURL(file);
+      } catch (err) {
+        console.log(err);
+      }
     }
-  };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // After form submission, update the freelancer state with submitted data
-    setFreelancer({
-      ...freelancer,
-      name: formData.name,
-      email: formData.email,
-      phoneNumber: formData.mobile,
-      profileImageURL: formData.profileImage || freelancer.profileImageURL, // Use uploaded image if available
-    });
+    getFreeData();
+  }, []);
+
+  const onFormSubmit = async (data) => {
+    const newData = { ...data, fId: freeId };
+
+    try {
+      const response = await api.post("/freelancer/update-details", {
+        newData,
+      });
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+      alert("Try again later!");
+    }
   };
 
   return (
@@ -70,16 +90,16 @@ function ManageAccount() {
               <div
                 className="profile-image"
                 style={{
-                  backgroundImage: `url(${freelancer.profileImageURL})`,
+                  backgroundImage: `url(${freelancer.fimage})`,
                 }}
-              />
+              ></div>
               <div className="info-item">
                 <label>Name:</label>
                 <input
                   type="text"
-                  name="name"
-                  id="name"
-                  placeholder={freelancer.name}
+                  name="username"
+                  id="username"
+                  placeholder={freelancer.username}
                   disabled
                 />
               </div>
@@ -99,15 +119,53 @@ function ManageAccount() {
                   type="text"
                   name="phoneNumber"
                   id="phoneNumber"
-                  placeholder={freelancer.phoneNumber}
+                  placeholder={freelancer.phone_number}
+                  disabled
+                />
+              </div>
+              <div className="info-item">
+                <label>Address:</label>
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  placeholder={freelancer.address}
                   disabled
                 />
               </div>
             </div>
-
-            {/* Form to Collect Details (acc-cont-2) */}
             <div className="acc-cont-2">
-              <form className="freelancer-form" onSubmit={handleSubmit}>
+              <div className="info-head-1">
+                <h1>Experience</h1>
+              </div>
+              <div className="form-item-container">
+                <label htmlFor="projects">Previously Worked Projects:</label>
+                <textarea
+                  id="projects"
+                  name="projects"
+                  placeholder={freelancer.workedProjects}
+                  disabled
+                ></textarea>
+              </div>
+              <div className="form-item-container">
+                <label htmlFor="techStack">Proficiency in Tech Stack:</label>
+                <input
+                  type="text"
+                  id="techStack"
+                  name="techStack"
+                  placeholder={freelancer.techStack}
+                  disabled
+                />
+              </div>
+            </div>
+          </div>
+          {/* Form to Collect Details (acc-cont-2) */}
+          <div className="update-container">
+            <div className="acc-cont-2">
+              <form
+                className="freelancer-form"
+                onSubmit={handleSubmit(onFormSubmit)}
+              >
                 <div className="info-head-1">
                   <h1>Update your Informtaion</h1>
                 </div>
@@ -115,64 +173,63 @@ function ManageAccount() {
                   <label htmlFor="name">Name:</label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    placeholder="Enter your name"
-                    required
+                    name="username"
+                    id="username"
+                    placeholder={freelancer.username}
+                    {...register("username", updateOptions.username)}
                   />
                 </div>
-
                 <div className="form-item-container">
                   <label htmlFor="projects">Previously Worked Projects:</label>
                   <textarea
                     id="projects"
                     name="projects"
-                    value={formData.projects}
-                    onChange={handleInputChange}
-                    placeholder="Describe your previous projects"
-                    required
+                    placeholder={freelancer.workedProjects}
+                    {...register(
+                      "workedProjects",
+                      updateOptions.workedProjects
+                    )}
                   ></textarea>
                 </div>
-
                 <div className="form-item-container">
                   <label htmlFor="techStack">Proficiency in Tech Stack:</label>
                   <input
                     type="text"
                     id="techStack"
                     name="techStack"
-                    value={formData.techStack}
-                    onChange={handleInputChange}
-                    placeholder="e.g., React, Node.js, Python"
-                    required
+                    placeholder={freelancer.techStack}
+                    {...register("techStack", updateOptions.techStack)}
                   />
                 </div>
-
                 <div className="form-item-container">
-                  <label htmlFor="mobile">Mobile Number:</label>
+                  <label htmlFor="mobile">Phone Number:</label>
                   <input
                     type="tel"
-                    id="mobile"
-                    name="mobile"
-                    value={formData.mobile}
-                    onChange={handleInputChange}
-                    placeholder="Enter your mobile number"
+                    id="phone_number"
+                    name="phone_number"
+                    placeholder={freelancer.phone_number}
                     pattern="[0-9]{10}"
-                    required
+                    {...register("phone_number", updateOptions.phone_number)}
                   />
                 </div>
-
                 <div className="form-item-container">
                   <label htmlFor="email">Email Address:</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    placeholder="Enter your email address"
-                    required
+                    placeholder={freelancer.email}
+                    {...register("email", updateOptions.email)}
+                  />
+                </div>
+                <div className="form-item-container">
+                  <label htmlFor="address">Address:</label>
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    placeholder={freelancer.address}
+                    {...register("address", updateOptions.address)}
                   />
                 </div>
 
@@ -181,16 +238,17 @@ function ManageAccount() {
                   <label htmlFor="profileImage">Upload Profile Picture:</label>
                   <input
                     type="file"
-                    id="profileImage"
-                    name="profileImage"
-                    accept="image/*"
-                    onChange={handleProfileImageChange}
+                    id="fimage"
+                    name="fimage"
+                    // accept="image/*"
+                    {...register("fimage", updateOptions.fimage)}
                   />
                 </div>
-
-                <button type="submit" className="submit-btn">
-                  Submit
-                </button>
+                <div className="up-btn-cont">
+                  <button type="submit" className="submit-btn">
+                    Update
+                  </button>
+                </div>
               </form>
             </div>
           </div>
@@ -201,52 +259,3 @@ function ManageAccount() {
 }
 
 export default ManageAccount;
-
-// import Header from "../../components/header/header";
-// import "./manageAccount.css";
-
-// function ManageAccount() {
-//   return (
-//     <div className="freelancerContainer">
-//       <Header />
-//       <div className="free-wrapper">
-//         <div className="account-content">
-//           <div className="acc-title">Your Information</div>
-//           <div className="twoCont">
-//             <div className="acc-cont-1"></div>
-//             <div className="acc-cont-2"></div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default ManageAccount;
-
-// {
-//   /* <div>
-//             <span>Name:</span>
-//             <div>
-//               <input
-//                 type="text"
-//                 name="name"
-//                 id="name"
-//                 placeholder="mahesh"
-//                 disabled
-//               />
-//             </div>
-//           </div> */
-// }
-// //   <div class="mb-3 row">
-// //     <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-// //     <div class="col-sm-10">
-// //       <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
-// //     </div>
-// //   </div>
-// //   <div class="mb-3 row">
-// //     <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-// //     <div class="col-sm-10">
-// //       <input type="password" class="form-control" id="inputPassword">
-// //     </div>
-// //   </div>

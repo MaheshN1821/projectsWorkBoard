@@ -20,12 +20,16 @@
 .on-sl {
   width: 10%;
   text-align: center;
+  place-content: center;
   border-right: 1px solid;
   padding: 8px;
+  height: 100px;
 }
 
 .on-pt {
   width: 35%;
+  place-content: center;
+  height: 100px;
   text-align: center;
   border-right: 1px solid;
   padding: 8px;
@@ -33,14 +37,17 @@
 
 .on-sn {
   width: 20%;
+  place-content: center;
+  height: 100px;
   text-align: center;
   border-right: 1px solid;
   padding: 8px;
 }
 
 .on-a {
-  width: 35%;
+  width: 25%;
   display: flex;
+  height: fit-content;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -53,10 +60,19 @@
   background-color: rgb(21, 190, 190);
   color: white;
   cursor: pointer;
+  margin: 6px 20px;
+}
+
+.on-delete {
+  padding: 2px 8px;
+  margin: 6px 20px;
+  cursor: pointer;
+  color: white;
+  background-color: rgba(255, 0, 0, 0.87);
 }
 
 .on-complete {
-  /* border: 1px solid; */
+  /* margin: 6px 20px; */
   padding: 2px 8px;
   cursor: pointer;
   color: white;
@@ -64,11 +80,11 @@
 }
 
 .on-a span:not(:hover) {
-  transform: scale(0.9);
+  transform: scale(1);
 }
 
 .on-a span:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .ongoing-chat {
@@ -88,6 +104,7 @@
   cursor: pointer;
   color: white;
   background-color: rgb(124, 24, 190);
+  /* margin: 6px 10px; */
 }
 
 .key-points-1 {

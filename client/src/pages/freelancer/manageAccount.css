@@ -100,11 +100,20 @@
   text-align: center;
 }
 
+.update-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
 .acc-cont-2 {
   background-color: rgba(0, 0, 0, 0.014);
   /* background-color: rgb(126, 188, 241); */
   color: #333;
-  width: 50%; /* Same width as acc-cont-1 */
+  width: 55%; /* Same width as acc-cont-1 */
   height: fit-content;
   margin: 20px;
   padding: 20px;
@@ -156,6 +165,11 @@
   resize: none;
 }
 
+.up-btn-cont {
+  display: flex;
+  justify-content: center;
+}
+
 .acc-cont-2 .submit-btn {
   margin-top: 20px;
   padding: 10px 20px;
@@ -164,6 +178,7 @@
   color: white;
   background-color: #016396;
   border: none;
+  width: 30%;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
