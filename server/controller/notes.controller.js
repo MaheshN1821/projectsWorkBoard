@@ -32,7 +32,19 @@ const handleSaveNote = async (req, res) => {
 };
 
 const handleGetNote = async (req, res) => {
-  console.log(req.body);
+  const { projectId, freelancer } = req.body;
+
+  try {
+    const result = await Note.find({
+      projectId: projectId,
+      freelancer: freelancer,
+    });
+
+    res.status(200).json({ result });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Try again Later!" });
+  }
 };
 
 export { handleGetNote, handleSaveNote };
