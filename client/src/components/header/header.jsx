@@ -5,7 +5,7 @@ function Header() {
   return (
     <header>
       <img src={logo} className="logo" alt="logo" />
-      <p className="title">Projectsworkboard</p>
+      <p className="title">ProjectsWorkBoard</p>
     </header>
   );
 }
