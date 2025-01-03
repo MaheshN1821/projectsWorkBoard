@@ -90,10 +90,10 @@ const handleStatus = async (req, res) => {
     .request(options)
     .then(async (response) => {
       if (response.data.success === true) {
-        const url = `http://localhost:5173/`;
+        const url = `http://localhost:5173/student`;
         return res.redirect(url);
       } else {
-        const url = `http://localhost:5173/student`;
+        const url = `http://localhost:5173/`;
         return res.redirect(url);
       }
     })

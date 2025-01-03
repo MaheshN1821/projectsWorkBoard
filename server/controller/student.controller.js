@@ -1,5 +1,6 @@
 import Project from "../model/project.js";
 import User from "../model/user.js";
+import Selected from "../model/selected.js";
 
 const handleProjectDetails = async (req, res) => {
   const info = req.body;
@@ -77,9 +78,63 @@ const handleStudentName = async (req, res) => {
   }
 };
 
+const handleSingleStudentInfo = async (req, res) => {
+  const studId = req.params.studId;
+
+  try {
+    const studentInfo = await User.findById(studId);
+
+    if (!studentInfo) {
+      return res.status(404).json({ error: "Invalid Id" });
+    }
+
+    res.status(200).json({ studentInfo });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Try again Later!" });
+  }
+};
+
+const handleDecline = async (req, res) => {
+  const { projId, freeId, studId } = req.body;
+
+  try {
+    const wait = await Selected.findByIdAndDelete(projId);
+
+    if (!wait) {
+      return res.status(401).json({ error: "Try again later!" });
+    }
+
+    res.status(200).json({ message: "Done", wait });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Try again Later!" });
+  }
+};
+
+const handleAccept = async (req, res) => {
+  const { projId, freeId, studId } = req.body;
+
+  try {
+    const wait = await Selected.findByIdAndUpdate(
+      projId,
+      { status: "Accepted" },
+      { new: true }
+    );
+    console.log(wait);
+    res.status(200).json({ message: "Done", wait });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Try again Later!" });
+  }
+};
+
 export {
   handleProjectDetails,
   handleProjectDetailsUpdation,
   handleProjectDetailsDeletion,
   handleStudentName,
+  handleDecline,
+  handleAccept,
+  handleSingleStudentInfo,
 };

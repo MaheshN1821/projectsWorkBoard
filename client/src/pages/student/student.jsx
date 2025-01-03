@@ -36,7 +36,14 @@ function Student() {
             >
               Track a Project
             </div>
-            <div className="subFeature">Book a 1:1 session</div>
+            <div
+              className="subFeature"
+              onClick={() => {
+                Navigate("/student/request");
+              }}
+            >
+              Book a 1:1 session
+            </div>
           </div>
         </div>
       </div>

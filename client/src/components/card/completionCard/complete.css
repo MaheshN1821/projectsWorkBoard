@@ -1,0 +1,106 @@
+.completeCard-container {
+  width: 45%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  background-color: #faf9f69c;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  margin: 10px 0px 20px 0px;
+  padding: 4px 10px 6px 10px;
+}
+
+.c-proj-title {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin: 20px 0px 10px 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.637);
+  width: 80%;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.c-border-card {
+  width: 96%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0px 10px 0px;
+  padding: 10px;
+}
+
+.c-p-desc {
+  width: 90%;
+  padding: 10px 12px;
+  /* white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; */
+  margin: 0px 0px 8px 0px;
+  text-align: justify;
+}
+
+.c-other-contents {
+  display: flex;
+  flex-direction: row;
+  width: 98%;
+  justify-content: space-between;
+}
+
+.c-p-stack {
+  width: 30%;
+  text-align: center;
+  padding: 5px 0px 8px 0px;
+  background-color: white;
+  place-content: center;
+  font-size: 1.2rem;
+  margin: 16px 0px 16px 0px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  background-color: #6daceccc;
+}
+
+.c-p-time {
+  width: 30%;
+  text-align: center;
+  background-color: white;
+  padding: 5px 6px 8px 6px;
+  margin: 16px 0px 16px 0px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  background-color: #8ec4fa;
+  place-content: center;
+  border: 1px solid white;
+  /* padding: 10px; */
+}
+
+.c-know-more {
+  width: 30%;
+  text-align: center;
+  padding: 5px 0px 8px 0px;
+  background-color: white;
+  place-content: center;
+  font-size: 1.2rem;
+  margin: 16px 0px 16px 0px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  background-color: #6daceccc;
+}
+
+.c-p-t {
+  font-weight: 600;
+  padding: 3px 0px;
+  font-size: 1.4rem;
+}
+
+.c-p-d {
+  font-weight: 600;
+  padding: 3px 0px;
+  font-size: 1.1rem;
+}
+
+.u-n-c {
+  font-size: 1.4rem;
+  font-weight: 600;
+}

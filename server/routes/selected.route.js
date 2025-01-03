@@ -7,9 +7,9 @@ import {
 
 const router = express.Router();
 
-router.get("/get", handleGetSelected);
+router.get("/get/freelancer/:freeId", handleGetSelected);
 
-router.get("/get/:userId", handleSingleStudentSelected);
+router.get("/get/user/:userId", handleSingleStudentSelected);
 
 router.post("/save", handleSaveSelected);
 

@@ -61,7 +61,7 @@ function Chat({ room, sid, fid }) {
               </div>
               <div className="message-meta">
                 <p id="time">{messageContent.time}</p>
-                <p id="author">{messageContent.author}</p>
+                {/* <p id="author">{messageContent.author}</p> */}
               </div>
             </div>
           </div>
@@ -72,6 +72,7 @@ function Chat({ room, sid, fid }) {
           className="chat-in"
           type="text"
           placeholder="Enter a message!"
+          value={currentMessage}
           onChange={(e) => setCurrentMessage(e.target.value)}
         />
         <button onClick={sendMessage} className="chat-send">

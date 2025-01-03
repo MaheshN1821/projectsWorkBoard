@@ -1,5 +1,40 @@
 .payment-container {
-  width: 50%;
+  width: 30%;
   height: fit-content;
   border: 1px solid;
+  padding: 10px;
+}
+
+.pay-input {
+  padding: 10px;
+  font-size: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-weight: 500;
+}
+
+.pay-input input {
+  font-size: 1rem;
+  border: 1px solid black;
+  padding: 6px;
+}
+
+.pay-input input:focus {
+  outline: none;
+}
+
+.pay-btn {
+  display: grid;
+  place-content: center;
+}
+
+.pay-btn button {
+  font-size: 1.2rem;
+  border: none;
+  padding: 4px 16px;
+  margin: 10px;
+  cursor: pointer;
+  color: white;
+  background-color: rgba(128, 0, 128, 0.733);
 }

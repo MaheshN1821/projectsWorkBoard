@@ -42,6 +42,7 @@
   text-align: center;
   border-right: 1px solid;
   padding: 8px;
+  cursor: pointer;
 }
 
 .on-a {
@@ -126,6 +127,7 @@
   font-size: 1.3rem;
   font-weight: 500;
   margin: 10px;
+  place-content: center;
   background-color: rgb(24, 35, 190);
 }
 
@@ -139,6 +141,7 @@
   margin: 10px;
   font-size: 1.3rem;
   background-color: orange;
+  place-content: center;
 }
 
 .adding-notes {
@@ -209,4 +212,62 @@
   flex-direction: row;
   justify-content: space-between;
   background-color: white;
+}
+
+.progress {
+  padding: 6px 14px 4px 14px;
+  font-weight: 500;
+  cursor: pointer;
+  color: white;
+  margin: 10px;
+  font-size: 1.3rem;
+  background-color: rgba(255, 166, 0, 0.945);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress input {
+  margin: 1px 10px 1px 10px;
+  border: 1px solid;
+  padding: 2px 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  width: 50px;
+}
+
+.progress input:focus {
+  outline: none;
+}
+
+.p-up {
+  border: 1px solid;
+  padding: 2px 8px;
+  background-color: white;
+  color: orange;
+}
+
+.p-up:hover {
+  background-color: rgba(255, 255, 255, 0.801);
+  color: black;
+}
+
+.stud-info-display {
+  border: 1px solid;
+  border-top: none;
+  padding: 16px;
+  font-size: 1.2rem;
+  justify-content: flex-start;
+}
+
+.stud-pn {
+  margin: 2px 16px 2px 2px;
+  font-weight: 500;
+}
+
+.stud-em {
+  font-weight: 500;
+  margin: 2px 2px 2px 16px;
 }
