@@ -104,10 +104,34 @@
   font-size: 1.5em;
   color: #004080;
   margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq h3:hover {
+  color: #003366;
+}
+
+.faq h3 span {
+  font-size: 0.8em;
+  color: #555;
+  transition: transform 0.3s;
+}
+
+.faq.open h3 span {
+  transform: rotate(180deg);
 }
 
 .faq p {
   font-size: 1.1em;
   color: #555;
   line-height: 1.6;
+  display: none;
+  margin-top: 10px;
+}
+
+.faq.open p {
+  display: block;
 }

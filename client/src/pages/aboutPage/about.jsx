@@ -1,8 +1,42 @@
+import React, { useState } from "react";
 import Header from "../../components/header/header";
 import Navbar from "../../components/navbar/navbar";
 import "./about.css";
 
 function About() {
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const faqData = [
+    {
+      question: "What is ProjectsWorkBoard?",
+      answer:
+        "ProjectsWorkBoard is a platform where clients can list their projects and freelancers can bid on them. It facilitates collaboration between clients and freelancers.",
+    },
+    {
+      question: "How do I create an account?",
+      answer:
+        "You can create an account by clicking on the 'Sign Up' button on the homepage and filling out the required details.",
+    },
+    {
+      question: "Is there a fee for using ProjectsWorkBoard?",
+      answer:
+        "While signing up is free, there might be platform fees based on the services used. Check the pricing page for more details.",
+    },
+    {
+      question: "How can I contact a freelancer/client?",
+      answer:
+        "Once a project is listed and a freelancer is chosen, both parties can chat in real-time using the platform's messaging feature.",
+    },
+    {
+      question: "Can I edit or delete a project after listing it?",
+      answer: "Yes, clients can edit or delete their projects through their dashboard.",
+    },
+  ];
+
   return (
     <div className="aboutPageContainer">
       <Header />
@@ -11,9 +45,9 @@ function About() {
         <div className="about-content">
           <h1>USER MANUAL</h1>
           <p>
-            <strong>ProjectsWorkBoard</strong> is a one-stop platform for freelancers and clients. 
-            It facilitates seamless collaboration by allowing clients to list projects and freelancers 
-            to quote estimated costs and delivery times. Clients can choose freelancers based on 
+            <strong>ProjectsWorkBoard</strong> is a one-stop platform for freelancers and clients.
+            It facilitates seamless collaboration by allowing clients to list projects and freelancers
+            to quote estimated costs and delivery times. Clients can choose freelancers based on
             their preferences and connect with them effortlessly.
           </p>
           <ol>
@@ -36,39 +70,37 @@ function About() {
             </li>
           </ol>
           <p>
-            Whether you're a client with a vision or a freelancer with expertise, ProjectsWorkBoard is the 
+            Whether you're a client with a vision or a freelancer with expertise, ProjectsWorkBoard is the
             ideal platform to bring your ideas to life.
           </p>
+          <p>Here is a demo video for freelancers</p>
           <div className="video-container">
             <video controls>
               <source src="/path-to-demo-video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
-          <div>
+          <p>Here is a demo video for clients</p>
+          <div className="video-container">
+            <video controls>
+              <source src="/path-to-demo-video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
           <div className="faq-section">
             <h2>Frequently Asked Questions</h2>
-            <div className="faq">
-              <h3>What is ProjectsWorkBoard?</h3>
-              <p>ProjectsWorkBoard is a platform where clients can list their projects and freelancers can bid on them. It facilitates collaboration between clients and freelancers.</p>
-            </div>
-            <div className="faq">
-              <h3>How do I create an account?</h3>
-              <p>You can create an account by clicking on the "Sign Up" button on the homepage and filling out the required details.</p>
-            </div>
-            <div className="faq">
-              <h3>Is there a fee for using ProjectsWorkBoard?</h3>
-              <p>While signing up is free, there might be platform fees based on the services used. Check the pricing page for more details.</p>
-            </div>
-            <div className="faq">
-              <h3>How can I contact a freelancer/client?</h3>
-              <p>Once a project is listed and a freelancer is chosen, both parties can chat in real-time using the platform's messaging feature.</p>
-            </div>
-            <div className="faq">
-              <h3>Can I edit or delete a project after listing it?</h3>
-              <p>Yes, clients can edit or delete their projects through their dashboard.</p>
-            </div>
+            {faqData.map((faq, index) => (
+              <div
+                key={index}
+                className={`faq ${openFaq === index ? "open" : ""}`}
+              >
+                <h3 onClick={() => toggleFaq(index)}>
+                  {faq.question}
+                  <span>{openFaq === index ? "▲" : "▼"}</span>
+                </h3>
+                <p>{faq.answer}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
