@@ -136,7 +136,6 @@ const handleFreelancerLogin = async (req, res) => {
 
     res.cookie("jwt", refToken, {
       httpOnly: true,
-      sameSite: "Strict",
       secure: true,
     });
 
@@ -169,7 +168,6 @@ const handleFreelancerLogout = async (req, res) => {
       res.clearCookie("jwt", {
         httpOnly: true,
         secure: true,
-        sameSite: "Strict",
       });
       return res.sendStatus(204);
     }
@@ -183,7 +181,6 @@ const handleFreelancerLogout = async (req, res) => {
     res.clearCookie("jwt", {
       httpOnly: true,
       secure: true,
-      sameSite: "Strict",
     });
 
     return res.status(204).json({ message: "Logout Successfull!" });
