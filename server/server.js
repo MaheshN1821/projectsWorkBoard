@@ -29,6 +29,8 @@ const corsOptions = {
   maxAge: 86400,
 };
 
+app.options("*", cors(corsOptions));
+
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());

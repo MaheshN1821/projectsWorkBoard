@@ -10,7 +10,7 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       try {
@@ -29,7 +29,7 @@ api.interceptors.response.use(
         // Handle refresh failure (e.g., logout)
         console.log("Im in Api file because of error");
 
-        window.location.href = "/"; // Redirect to login
+        window.location.href = "https://projectsworkboard.vercel.app/"; // Redirect to login
         return Promise.reject(refreshError);
       }
     }
