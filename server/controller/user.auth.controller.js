@@ -130,7 +130,7 @@ const handleUserLogin = async (req, res) => {
     });
 
     const refToken = jwt.sign({ email: email }, process.env.SEC_REF, {
-      expiresIn: 24 * 60 * 60 * 100,
+      expiresIn: "1d",
     });
 
     res.cookie("jwt", refToken, {
