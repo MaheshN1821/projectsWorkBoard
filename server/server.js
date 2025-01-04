@@ -25,7 +25,7 @@ const corsOptions = {
   method: "GET,POST",
   allowedHeaders: "Content-Type,Authorization",
   credentials: true,
-  origin: "http://localhost:5173",
+  origin: "https://projectsworkboard.vercel.app/",
   maxAge: 86400,
 };
 
@@ -53,7 +53,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://projectsworkboard.vercel.app/",
   },
 });
 
@@ -85,10 +85,6 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
-// app.listen(PORT, () => {
-//   console.log(`Server is running in port ${PORT}`);
-// });
 
 server.listen(PORT, () => {
   console.log(`Server is running in port ${PORT}`);

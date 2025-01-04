@@ -137,7 +137,7 @@ const handleFreelancerLogin = async (req, res) => {
     res.cookie("jwt", refToken, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 100,
-      secure: false,
+      secure: true,
     });
 
     const response = await Freelancer.findByIdAndUpdate(
@@ -168,7 +168,7 @@ const handleFreelancerLogout = async (req, res) => {
     if (!existingUser) {
       res.clearCookie("jwt", {
         httpOnly: true,
-        secure: false,
+        secure: true,
       });
       return res.sendStatus(204);
     }
@@ -181,7 +181,7 @@ const handleFreelancerLogout = async (req, res) => {
 
     res.clearCookie("jwt", {
       httpOnly: true,
-      secure: false,
+      secure: true,
     });
 
     return res.status(204).json({ message: "Logout Successfull!" });
