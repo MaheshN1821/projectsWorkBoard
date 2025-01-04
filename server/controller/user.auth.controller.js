@@ -159,6 +159,7 @@ const handleUserLogout = async (req, res) => {
   const refToken = req?.cookies?.jwt;
 
   if (!refToken) {
+    console.log("im in 1st if");
     return res.sendStatus(401);
   }
 
@@ -168,9 +169,9 @@ const handleUserLogout = async (req, res) => {
     if (!existingUser) {
       res.clearCookie("jwt", {
         httpOnly: true,
-        maxAge: 24 * 60 * 60 * 100,
         secure: false,
       });
+      console.log("im in 2nd if");
       return res.status(200).json({ message: "Logout Successfull!" });
     }
 
@@ -182,7 +183,6 @@ const handleUserLogout = async (req, res) => {
 
     res.clearCookie("jwt", {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 100,
       secure: false,
     });
 

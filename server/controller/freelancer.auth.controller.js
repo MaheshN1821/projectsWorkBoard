@@ -168,13 +168,12 @@ const handleFreelancerLogout = async (req, res) => {
     if (!existingUser) {
       res.clearCookie("jwt", {
         httpOnly: true,
-        maxAge: 24 * 60 * 60 * 100,
         secure: false,
       });
       return res.sendStatus(204);
     }
 
-    await User.findByIdAndUpdate(
+    await Freelancer.findByIdAndUpdate(
       existingUser._id,
       { refreshToken: "" },
       { new: true }
@@ -182,7 +181,6 @@ const handleFreelancerLogout = async (req, res) => {
 
     res.clearCookie("jwt", {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 100,
       secure: false,
     });
 

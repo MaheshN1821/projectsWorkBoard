@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const api = axios.create({
+const freeApi = axios.create({
   baseURL: "http://localhost:3000",
   withCredentials: true, // Allows cookies to be sent with the request
 });
 
-api.interceptors.response.use(
+freeApi.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
@@ -14,20 +14,20 @@ api.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        console.log("im in api.js before calling refreshToken endpoint");
+        console.log("im in freeApi.js before calling refreshToken endpoint");
 
         // Make a call to the refresh endpoint
-        const response = await api.get("/refreshToken/user"); // Endpoint for refreshing tokens
+        const response = await freeApi.get("/refreshToken/freelancer"); // Endpoint for refreshing tokens
         const newAccessToken = response.data.accessToken;
 
         // Set the new accessToken in the authorization header
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
 
         // Retry the original request
-        return api(originalRequest);
+        return freeApi(originalRequest);
       } catch (refreshError) {
         // Handle refresh failure (e.g., logout)
-        console.log("Im in Api file because of error");
+        console.log("Im in FreeApi file because of error");
 
         window.location.href = "/"; // Redirect to login
         return Promise.reject(refreshError);
@@ -38,4 +38,4 @@ api.interceptors.response.use(
   }
 );
 
-export default api;
+export default freeApi;

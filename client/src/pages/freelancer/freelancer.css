@@ -49,16 +49,44 @@
 
 .manage {
   position: absolute;
-  top: 120px;
-  right: 50px;
+  top: 175px;
+  right: 60px;
   font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
   color: #e5eff4;
+  color: white;
+  border: 1px solid white;
+  padding: 2px 10px;
+  background-color: rgba(0, 0, 0, 0.486);
 }
 
 .manage:hover {
   background-color: #b2d0df;
   padding: 4px 6px;
   color: black;
+}
+
+.manage-s-f {
+  position: absolute;
+  top: 120px;
+  right: 50px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #e5eff4;
+}
+
+.manage-s-l-f {
+  position: absolute;
+  top: 215px;
+  right: 60px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  border: 1px solid white;
+  padding: 2px 10px;
+  background-color: rgba(0, 0, 0, 0.486);
+  /* color: #e5eff4; */
 }

@@ -22,6 +22,7 @@ const projectSchema = new mongoose.Schema({
   },
   student: {
     type: mongoose.Schema.Types.ObjectId,
+    required: true,
   },
   status: {
     type: String,

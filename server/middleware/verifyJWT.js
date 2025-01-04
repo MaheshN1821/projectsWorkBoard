@@ -11,8 +11,10 @@ async function verifyJWT(req, res, next) {
     const token = authHeader.split(" ")[1];
 
     jwt.verify(token, process.env.SEC_ACC, (err, user) => {
-      if (err) return res.status(403).json({ error: "Login Again!" });
-
+      if (err) {
+        console.log("im in verifyJWT in jwt verifying going wrong");
+        return res.status(403).json({ error: "Login Again!" });
+      }
       req.users = user;
       next();
     });
