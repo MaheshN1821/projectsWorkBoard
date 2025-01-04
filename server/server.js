@@ -22,7 +22,7 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  method: "GET,POST",
+  method: ["GET", "POST"],
   allowedHeaders: "Content-Type,Authorization",
   credentials: true,
   origin: "https://projectsworkboard.vercel.app",
@@ -54,8 +54,16 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: "https://projectsworkboard.vercel.app",
+    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
+
+// const io = new Server(server, {
+//   cors: {
+//     origin: "https://projectsworkboard.vercel.app",
+//   },
+// });
 
 io.on("connection", (socket) => {
   console.log("User Connected!", socket.id);

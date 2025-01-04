@@ -2,7 +2,9 @@ import "./chat.css";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io.connect("https://projects-work-board.vercel.app");
+const socket = io.connect("https://projects-work-board.vercel.app", {
+  withCredentials: true,
+});
 
 function Chat({ room, sid, fid }) {
   const [currentMessage, setCurrentMessage] = useState("");
