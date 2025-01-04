@@ -25,7 +25,7 @@ const corsOptions = {
   method: "GET,POST",
   allowedHeaders: "Content-Type,Authorization",
   credentials: true,
-  origin: "https://projectsworkboard.vercel.app/",
+  origin: "https://projectsworkboard.vercel.app",
   maxAge: 86400,
 };
 
@@ -53,7 +53,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://projectsworkboard.vercel.app/",
+    origin: "https://projectsworkboard.vercel.app",
   },
 });
 

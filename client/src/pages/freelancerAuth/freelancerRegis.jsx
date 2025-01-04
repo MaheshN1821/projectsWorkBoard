@@ -23,6 +23,7 @@ function FreelancerRegis() {
           headers: {
             "Content-Type": "application/json",
           },
+          withCredentials: true,
         }
       );
 
