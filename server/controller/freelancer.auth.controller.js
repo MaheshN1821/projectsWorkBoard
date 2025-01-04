@@ -131,12 +131,12 @@ const handleFreelancerLogin = async (req, res) => {
     });
 
     const refToken = jwt.sign({ email: email }, process.env.SEC_REF, {
-      expiresIn: 24 * 60 * 60 * 100,
+      expiresIn: "1d",
     });
 
     res.cookie("jwt", refToken, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 100,
+      sameSite: "Strict",
       secure: true,
     });
 
@@ -169,6 +169,7 @@ const handleFreelancerLogout = async (req, res) => {
       res.clearCookie("jwt", {
         httpOnly: true,
         secure: true,
+        sameSite: "Strict",
       });
       return res.sendStatus(204);
     }
@@ -182,6 +183,7 @@ const handleFreelancerLogout = async (req, res) => {
     res.clearCookie("jwt", {
       httpOnly: true,
       secure: true,
+      sameSite: "Strict",
     });
 
     return res.status(204).json({ message: "Logout Successfull!" });

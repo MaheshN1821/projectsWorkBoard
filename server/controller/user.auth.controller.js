@@ -135,7 +135,7 @@ const handleUserLogin = async (req, res) => {
 
     res.cookie("jwt", refToken, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 100,
+      sameSite: "Strict",
       secure: true,
     });
 
@@ -170,6 +170,7 @@ const handleUserLogout = async (req, res) => {
       res.clearCookie("jwt", {
         httpOnly: true,
         secure: true,
+        sameSite: "Strict",
       });
       console.log("im in 2nd if");
       return res.status(200).json({ message: "Logout Successfull!" });
@@ -184,6 +185,7 @@ const handleUserLogout = async (req, res) => {
     res.clearCookie("jwt", {
       httpOnly: true,
       secure: true,
+      sameSite: "Strict",
     });
 
     return res.status(200).json({ message: "Logout Successfull!" });
