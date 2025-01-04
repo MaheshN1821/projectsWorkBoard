@@ -13,6 +13,7 @@ import handlePayment from "./routes/payment.route.js";
 import handleFreelancerInformation from "./routes/freelancer.route.js";
 import handleNotes from "./routes/notes.route.js";
 import handleRequest from "./routes/request.route.js";
+import handleNotification from "./routes/notify.route.js";
 
 import http from "http";
 import { Server } from "socket.io";
@@ -42,6 +43,7 @@ app.use("/selected", handleSelected);
 app.use("/payment", handlePayment);
 app.use("/freelancer", handleFreelancerInformation);
 app.use("/request", handleRequest);
+app.use("/notify", handleNotification);
 
 app.get("/", (req, res) => {
   res.send("Hello World");
