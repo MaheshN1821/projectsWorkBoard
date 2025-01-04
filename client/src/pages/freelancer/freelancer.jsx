@@ -29,7 +29,9 @@ function Freelancer() {
 
   async function handleLogout() {
     try {
-      await freeApi.get("/auth/freelancer/logout");
+      await freeApi.get("/auth/freelancer/logout", {
+        withCredentials: true,
+      });
       sessionStorage.clear();
       Navigate("/");
     } catch (err) {

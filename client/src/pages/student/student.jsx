@@ -30,7 +30,9 @@ function Student() {
 
   async function handleLogout() {
     try {
-      await api.get("/auth/student/logout");
+      await api.get("/auth/student/logout", {
+        withCredentials: true,
+      });
       sessionStorage.clear();
       Navigate("/");
     } catch (err) {
