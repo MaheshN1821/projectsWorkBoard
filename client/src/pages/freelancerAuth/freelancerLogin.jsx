@@ -24,7 +24,7 @@ function FreelancerLogin() {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/auth/freelancer/login",
+        "https://projects-work-board.vercel.app/auth/freelancer/login",
         JSON.stringify(data),
         {
           headers: {
