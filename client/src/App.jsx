@@ -1,4 +1,5 @@
 import "./App.css";
+import { Analytics } from "@vercel/analytics/react";
 import LandingPage from "./pages/landingPage/landingPage";
 import { Routes, Route } from "react-router-dom";
 import About from "./pages/aboutPage/about";
@@ -47,6 +48,7 @@ function App() {
         <Route path="/student/track-project" element={<TrackProject />} />
         <Route path="/student/request" element={<Session />} />
       </Routes>
+      <Analytics />
     </>
   );
 }
