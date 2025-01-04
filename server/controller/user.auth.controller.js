@@ -130,12 +130,13 @@ const handleUserLogin = async (req, res) => {
     });
 
     const refToken = jwt.sign({ email: email }, process.env.SEC_REF, {
-      expiresIn: "1d",
+      expiresIn: "8h",
     });
 
     res.cookie("jwt", refToken, {
       httpOnly: true,
       secure: true,
+      maxAge: 60 * 60 * 24 * 7,
     });
 
     const response = await User.findByIdAndUpdate(
