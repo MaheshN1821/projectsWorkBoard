@@ -6,7 +6,7 @@ import {
   handleEmail,
   handlePassswordReset,
 } from "../controller/user.auth.controller.js";
-import verifyJWT from "../middleware/verifyJWT.js";
+// import verifyJWT from "../middleware/verifyJWT.js";
 
 const router = express.Router();
 
@@ -18,6 +18,6 @@ router.post("/password-reset", handlePassswordReset);
 
 router.post("/login", handleUserLogin);
 
-router.get("/logout", verifyJWT, handleUserLogout);
+router.get("/logout", handleUserLogout);
 
 export default router;

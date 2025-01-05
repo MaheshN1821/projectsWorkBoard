@@ -6,7 +6,7 @@ import {
   handleFreelancerEmail,
   handleFreelancerPassswordReset,
 } from "../controller/freelancer.auth.controller.js";
-import verifyJWT from "../middleware/verifyJWT.js";
+// import verifyJWT from "../middleware/verifyJWT.js";
 
 const router = express.Router();
 
@@ -18,6 +18,6 @@ router.post("/password-reset", handleFreelancerPassswordReset);
 
 router.post("/login", handleFreelancerLogin);
 
-router.get("/logout", verifyJWT, handleFreelancerLogout);
+router.get("/logout", handleFreelancerLogout);
 
 export default router;
