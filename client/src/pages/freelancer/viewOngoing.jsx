@@ -5,6 +5,7 @@ import api from "../../utils/api";
 
 function ViewOngoing({ ongoing, index, count, setCount }) {
   const [displayChat, setDisplayChat] = useState(false);
+  const [call, setCall] = useState(false);
   const [displayAddNote, setDisplayAddNote] = useState(false);
   const [toDisplayNotes, setToDisplayNotes] = useState(false);
   const [displayKeyPoints, setDisplayKeyPoints] = useState(false);
@@ -21,6 +22,7 @@ function ViewOngoing({ ongoing, index, count, setCount }) {
 
   function handleChatClick() {
     setDisplayChat(!displayChat);
+    setCall(!call);
   }
 
   function handleKeyPointsClick() {
@@ -230,7 +232,7 @@ function ViewOngoing({ ongoing, index, count, setCount }) {
         className="ongoing-chat"
         style={{ display: displayChat ? "flex" : "none" }}
       >
-        <Chat userID={fid} />
+        {call ? <Chat userID={fid} /> : "Chat"}
       </div>
     </div>
   );

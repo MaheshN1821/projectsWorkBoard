@@ -6,6 +6,7 @@ import Payment from "../../payment/payment";
 
 function ViewTrack({ singleTrack, index, count, setCount }) {
   const [displayChat, setDisplayChat] = useState(false);
+  const [toCall, setToCall] = useState(false);
   const [freelancerInfo, setFreelancerInfo] = useState([]);
   const [freename, setFreeName] = useState("M");
   const [displayNone, setDisplayNone] = useState(false);
@@ -18,6 +19,7 @@ function ViewTrack({ singleTrack, index, count, setCount }) {
 
   function handleChatClick() {
     setDisplayChat(!displayChat);
+    setToCall(!toCall);
   }
 
   async function handleDecline() {
@@ -159,7 +161,7 @@ function ViewTrack({ singleTrack, index, count, setCount }) {
         className="track-chat"
         style={{ display: displayChat ? "flex" : "none" }}
       >
-        <Chat userID={sid} />
+        {toCall ? <Chat userID={sid} /> : "Chat"}
       </div>
       <div
         style={{ display: displayProfile ? "flex" : "none" }}
