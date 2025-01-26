@@ -76,6 +76,7 @@ const io = new Server(server, {
   },
   transports: ["websocket", "polling"],
   allowEIO3: true,
+  addTrailingSlash: false,
 });
 
 let users = [];
