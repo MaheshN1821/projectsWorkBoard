@@ -156,33 +156,33 @@ const handleFreelancerLogin = async (req, res) => {
 };
 
 const handleFreelancerLogout = async (req, res) => {
-  const refToken = req?.cookies?.jwt;
+  // const refToken = req?.cookies?.jwt;
 
-  if (!refToken) {
-    return res.sendStatus(403);
-  }
+  // if (!refToken) {
+  //   return res.sendStatus(403);
+  // }
 
   try {
-    const existingUser = await Freelancer.findOne({ refreshToken: refToken });
+    // const existingUser = await Freelancer.findOne({ refreshToken: refToken });
 
-    if (!existingUser) {
-      res.clearCookie("jwt", {
-        httpOnly: true,
-        secure: true,
-      });
-      return res.sendStatus(204);
-    }
+    // if (!existingUser) {
+    //   res.clearCookie("jwt", {
+    //     httpOnly: true,
+    //     secure: true,
+    //   });
+    //   return res.sendStatus(204);
+    // }
 
-    await Freelancer.findByIdAndUpdate(
-      existingUser._id,
-      { refreshToken: "" },
-      { new: true }
-    );
+    // await Freelancer.findByIdAndUpdate(
+    //   existingUser._id,
+    //   { refreshToken: "" },
+    //   { new: true }
+    // );
 
-    res.clearCookie("jwt", {
-      httpOnly: true,
-      secure: true,
-    });
+    // res.clearCookie("jwt", {
+    //   httpOnly: true,
+    //   secure: true,
+    // });
 
     return res.status(204).json({ message: "Logout Successfull!" });
   } catch (err) {

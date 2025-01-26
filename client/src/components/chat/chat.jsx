@@ -11,12 +11,11 @@ function Chat({ userID }) {
 
   useEffect(() => {
     // socket.current = io("wss://projects-work-board.vercel.app");
-    socket.current = io("wss://projects-work-board.vercel.app", {
+    socket.current = io("https://projects-work-board.vercel.app", {
       withCredentials: true,
-      transports: ["websocket", "polling"],
+      transports: ["websocket"],
       reconnectionAttempts: 3,
       reconnectionDelay: 1000,
-      debug: true,
     });
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
@@ -34,12 +33,6 @@ function Chat({ userID }) {
     };
   }, []);
 
-  // useEffect(() => {
-  //   arrivalMessage &&
-  //     currentUserChat?.includes(arrivalMessage.sender) &&
-  //     setMessageList((prev) => [...prev, arrivalMessage]);
-  // }, [arrivalMessage, currentUserChat]);
-
   useEffect(() => {
     if (
       arrivalMessage &&
@@ -50,7 +43,6 @@ function Chat({ userID }) {
   }, [arrivalMessage, currentUserChat]);
 
   useEffect(() => {
-    // setCurrentUserChat(...currentUserChat, { user: userID });
     setCurrentUserChat((prev) => [...prev, { user: userID }]);
     socket.current.emit("addUser", userID);
     socket.current.on("getUsers", (users) => {
@@ -74,7 +66,6 @@ function Chat({ userID }) {
           new Date(Date.now()).getMinutes(),
       };
 
-      // const receiverId = currentUserChat.find((member) => member !== userID);
       const receiverId = currentUserChat.find(
         (member) => member.user !== userID
       )?.user;
