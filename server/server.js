@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import httpProxy from "http-proxy";
+// import httpProxy from "http-proxy";
 import handleUserAuth from "./routes/user.auth.route.js";
 import handlefreelancerAuth from "./routes/freelancer.auth.route.js";
 import handleRefreshToken from "./routes/refreshToken.route.js";
@@ -17,7 +17,7 @@ import handleRequest from "./routes/request.route.js";
 import handleNotification from "./routes/notify.route.js";
 
 // import http from "http";
-import { Server } from "socket.io";
+// import { Server } from "socket.io";
 
 dotenv.config();
 const app = express();
@@ -54,77 +54,77 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 3300;
 
-const proxy = httpProxy.createProxyServer({
-  target: `https://projects-work-board.vercel.app`,
-  ws: true,
-});
-
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server is running in port ${PORT}`);
 });
 
-server.on("upgrade", (req, socket, head) => {
-  proxy.ws(req, socket, head);
-});
+// const proxy = httpProxy.createProxyServer({
+//   target: `https://sockets-gosz.onrender.com`,
+//   ws: true,
+// });
 
-const io = new Server(server, {
-  cors: {
-    origin: "https://projectsworkboard.vercel.app",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-  },
-  transports: ["websocket", "polling"],
-  allowEIO3: true,
-  addTrailingSlash: false,
-});
+// server.on("upgrade", (req, socket, head) => {
+//   proxy.ws(req, socket, head);
+// });
 
-let users = [];
+// const io = new Server(server, {
+//   cors: {
+//     origin: "https://projectsworkboard.vercel.app",
+//     methods: ["GET", "POST"],
+//     allowedHeaders: ["Content-Type"],
+//     credentials: true,
+//   },
+//   transports: ["websocket", "polling"],
+//   allowEIO3: true,
+//   addTrailingSlash: false,
+// });
 
-const addUsers = (userId, socketId) => {
-  !users.some((user) => user.userId === userId) &&
-    users.push({ userId, socketId });
-};
+// let users = [];
 
-const removeUser = (socketId) => {
-  users = users.filter((user) => user.socketId !== socketId);
-};
+// const addUsers = (userId, socketId) => {
+//   !users.some((user) => user.userId === userId) &&
+//     users.push({ userId, socketId });
+// };
 
-const getUser = (userId) => {
-  return users.find((user) => user.userId === userId);
-};
+// const removeUser = (socketId) => {
+//   users = users.filter((user) => user.socketId !== socketId);
+// };
 
-io.on("connection", (socket) => {
-  console.log("user connected" + socket.id);
+// const getUser = (userId) => {
+//   return users.find((user) => user.userId === userId);
+// };
 
-  socket.on("addUser", (userId) => {
-    addUsers(userId, socket.id);
-    io.emit("getUsers", users);
-  });
+// io.on("connection", (socket) => {
+//   console.log("user connected" + socket.id);
 
-  socket.on("sendMessage", ({ senderId, receiverId, text }) => {
-    const user = getUser(receiverId);
-    if (user) {
-      io.to(user.socketId).emit("getMessage", { senderId, text });
-    } else {
-      console.log("Receiver not found:", receiverId);
-    }
-    // io.to(user.socketId).emit("getMessage", {
-    //   senderId,
-    //   text,
-    // });
-  });
+//   socket.on("addUser", (userId) => {
+//     addUsers(userId, socket.id);
+//     io.emit("getUsers", users);
+//   });
 
-  socket.on("disconnect", () => {
-    console.log("user Disconnected");
-    removeUser(socket.id);
-    io.emit("getUsers", users);
-  });
+//   socket.on("sendMessage", ({ senderId, receiverId, text }) => {
+//     const user = getUser(receiverId);
+//     if (user) {
+//       io.to(user.socketId).emit("getMessage", { senderId, text });
+//     } else {
+//       console.log("Receiver not found:", receiverId);
+//     }
+//     // io.to(user.socketId).emit("getMessage", {
+//     //   senderId,
+//     //   text,
+//     // });
+//   });
 
-  socket.on("connect_error", (err) => {
-    console.error("Socket connection error:", err.message);
-  });
-});
+//   socket.on("disconnect", () => {
+//     console.log("user Disconnected");
+//     removeUser(socket.id);
+//     io.emit("getUsers", users);
+//   });
+
+//   socket.on("connect_error", (err) => {
+//     console.error("Socket connection error:", err.message);
+//   });
+// });
 
 mongoose
   .connect(process.env.MONGO_URL)
