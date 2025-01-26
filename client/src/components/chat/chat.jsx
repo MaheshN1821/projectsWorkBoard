@@ -12,7 +12,7 @@ function Chat({ userID }) {
   useEffect(() => {
     socket.current = io("https://sockets-gosz.onrender.com", {
       withCredentials: true,
-      // transports: ["websocket", "polling"],
+      transports: ["websocket", "polling"],
     });
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
