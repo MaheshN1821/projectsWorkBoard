@@ -63,9 +63,10 @@ const io = new Server(server, {
   cors: {
     origin: "https://projectsworkboard.vercel.app",
     methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
+    transports: ["websocket", "polling"],
     credentials: true,
   },
+  allowEIO3: true,
 });
 
 let users = [];

@@ -13,6 +13,7 @@ function Chat({ userID }) {
     // socket.current = io("wss://projects-work-board.vercel.app");
     socket.current = io("https://projects-work-board.vercel.app", {
       withCredentials: true,
+      transports: ["websocket", "polling"],
     });
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
