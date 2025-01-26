@@ -55,7 +55,7 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 3300;
 
 const proxy = httpProxy.createProxyServer({
-  target: `http://localhost:${PORT}`,
+  target: `https://projects-work-board.vercel.app`,
   ws: true,
 });
 
@@ -93,10 +93,6 @@ const getUser = (userId) => {
   return users.find((user) => user.userId === userId);
 };
 
-socket.on("connect_error", (err) => {
-  console.error("Socket connection error:", err.message);
-});
-
 io.on("connection", (socket) => {
   console.log("user connected" + socket.id);
 
@@ -122,6 +118,10 @@ io.on("connection", (socket) => {
     console.log("user Disconnected");
     removeUser(socket.id);
     io.emit("getUsers", users);
+  });
+
+  socket.on("connect_error", (err) => {
+    console.error("Socket connection error:", err.message);
   });
 });
 
