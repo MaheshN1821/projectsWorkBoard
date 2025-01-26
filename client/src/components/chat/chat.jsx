@@ -10,10 +10,9 @@ function Chat({ userID }) {
   const socket = useRef();
 
   useEffect(() => {
-    // socket.current = io("wss://projects-work-board.vercel.app");
-    socket.current = io("https://projects-work-board.vercel.app", {
+    socket.current = io("https://sockets-gosz.onrender.com", {
       withCredentials: true,
-      transports: ["websocket", "polling"],
+      // transports: ["websocket", "polling"],
     });
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
@@ -128,100 +127,3 @@ function Chat({ userID }) {
 }
 
 export default Chat;
-
-// import "./chat.css";
-// import { useEffect, useState } from "react";
-// import { io } from "socket.io-client";
-
-// function Chat({ room, sid, fid }) {
-//   const [currentMessage, setCurrentMessage] = useState("");
-//   const [messageList, setMessageList] = useState([]);
-//   const [socket, setSocket] = useState(null);
-
-//   useEffect(() => {
-//     // Initialize socket
-//     const newSocket = io("https://projects-work-board.vercel.app", {
-//       withCredentials: true,
-//       transports: ["websocket"],
-//     });
-//     setSocket(newSocket);
-
-//     return () => {
-//       newSocket.disconnect(); // Cleanup socket on component unmount
-//     };
-//   }, []);
-
-//   useEffect(() => {
-//     if (!socket) return;
-
-//     // Join room
-//     if (room) {
-//       socket.emit("join_room", room);
-//     }
-
-//     // Listen for incoming messages
-//     socket.on("receive_message", (data) => {
-//       setMessageList((list) => [...list, data]);
-//     });
-
-//     // Cleanup listener on dependency changes
-//     return () => {
-//       socket.off("receive_message");
-//     };
-//   }, [socket, room]);
-
-//   const sendMessage = async () => {
-//     if (currentMessage.trim() !== "") {
-//       const messageData = {
-//         room: room,
-//         author: sid,
-//         message: currentMessage.trim(),
-//         time:
-//           new Date(Date.now()).getHours() +
-//           " : " +
-//           new Date(Date.now()).getMinutes(),
-//       };
-
-//       await socket.emit("send_message", messageData);
-//       setMessageList((list) => [...list, messageData]);
-//       setCurrentMessage(""); // Clear the input field
-//     }
-//   };
-
-//   return (
-//     <div className="chat-container">
-//       <div className="chat-body">
-//         {messageList.map((messageContent, index) => (
-//           <div
-//             key={index}
-//             className="message"
-//             id={sid === messageContent.author ? "you" : "other"}
-//           >
-//             <div>
-//               <div className="message-content">
-//                 <p>{messageContent.message}</p>
-//               </div>
-//               <div className="message-meta">
-//                 <p id="time">{messageContent.time}</p>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//       <div className="chat-send-cont">
-//         <input
-//           className="chat-in"
-//           type="text"
-//           placeholder="Enter a message!"
-//           value={currentMessage}
-//           onChange={(e) => setCurrentMessage(e.target.value)}
-//         />
-//         <button onClick={sendMessage} className="chat-send">
-//           Send
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Chat;
