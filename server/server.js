@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import httpProxy from "http-proxy";
 import handleUserAuth from "./routes/user.auth.route.js";
 import handlefreelancerAuth from "./routes/freelancer.auth.route.js";
 import handleRefreshToken from "./routes/refreshToken.route.js";
@@ -53,19 +54,27 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 3300;
 
+const proxy = httpProxy.createProxyServer({
+  target: `http://localhost:${PORT}`,
+  ws: true,
+});
+
 const server = app.listen(PORT, () => {
   console.log(`Server is running in port ${PORT}`);
 });
 
-// const server = http.createServer(app);
+server.on("upgrade", (req, socket, head) => {
+  proxy.ws(req, socket, head);
+});
 
 const io = new Server(server, {
   cors: {
     origin: "https://projectsworkboard.vercel.app",
     methods: ["GET", "POST"],
-    transports: ["websocket", "polling"],
+    allowedHeaders: ["Content-Type"],
     credentials: true,
   },
+  transports: ["websocket", "polling"],
   allowEIO3: true,
 });
 
@@ -83,6 +92,10 @@ const removeUser = (socketId) => {
 const getUser = (userId) => {
   return users.find((user) => user.userId === userId);
 };
+
+socket.on("connect_error", (err) => {
+  console.error("Socket connection error:", err.message);
+});
 
 io.on("connection", (socket) => {
   console.log("user connected" + socket.id);
