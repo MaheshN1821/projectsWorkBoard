@@ -11,8 +11,12 @@ function Chat({ userID }) {
 
   useEffect(() => {
     // socket.current = io("wss://projects-work-board.vercel.app");
-    socket.current = io("https://projects-work-board.vercel.app", {
+    socket.current = io("wss://projects-work-board.vercel.app", {
       withCredentials: true,
+      transports: ["websocket", "polling"],
+      reconnectionAttempts: 3,
+      reconnectionDelay: 1000,
+      debug: true,
     });
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
