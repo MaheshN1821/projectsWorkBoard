@@ -16,7 +16,7 @@ import handleRequest from "./routes/request.route.js";
 import handleNotification from "./routes/notify.route.js";
 
 // import http from "http";
-import socket from "socket.io";
+import { Server } from "socket.io";
 
 dotenv.config();
 const app = express();
@@ -59,7 +59,7 @@ const server = app.listen(PORT, () => {
 
 // const server = http.createServer(app);
 
-const io = socket(server, {
+const io = new Server(server, {
   cors: {
     origin: "https://projectsworkboard.vercel.app",
     methods: ["GET", "POST"],
