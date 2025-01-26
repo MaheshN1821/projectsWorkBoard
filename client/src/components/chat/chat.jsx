@@ -1,59 +1,100 @@
 import "./chat.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 
-function Chat({ room, sid, fid }) {
+function Chat({ userID }) {
   const [currentMessage, setCurrentMessage] = useState("");
+  const [currentUserChat, setCurrentUserChat] = useState([]);
   const [messageList, setMessageList] = useState([]);
-  const [socket, setSocket] = useState(null);
+  const [arrivalMessage, setArrivalMessage] = useState(null);
+  const socket = useRef();
 
   useEffect(() => {
-    // Initialize socket
-    const newSocket = io("https://projects-work-board.vercel.app", {
+    // socket.current = io("wss://projects-work-board.vercel.app");
+    socket.current = io("https://projects-work-board.vercel.app", {
       withCredentials: true,
-      transports: ["websocket"],
     });
-    setSocket(newSocket);
+    socket.current.on("getMessage", (data) => {
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createdAt:
+          new Date(Date.now()).getHours() +
+          " : " +
+          new Date(Date.now()).getMinutes(),
+      });
+    });
 
     return () => {
-      newSocket.disconnect(); // Cleanup socket on component unmount
+      socket.current.disconnect();
     };
   }, []);
 
+  // useEffect(() => {
+  //   arrivalMessage &&
+  //     currentUserChat?.includes(arrivalMessage.sender) &&
+  //     setMessageList((prev) => [...prev, arrivalMessage]);
+  // }, [arrivalMessage, currentUserChat]);
+
   useEffect(() => {
-    if (!socket) return;
-
-    // Join room
-    if (room) {
-      socket.emit("join_room", room);
+    if (
+      arrivalMessage &&
+      currentUserChat.some((user) => user.user === arrivalMessage.sender)
+    ) {
+      setMessageList((prev) => [...prev, arrivalMessage]);
     }
+  }, [arrivalMessage, currentUserChat]);
 
-    // Listen for incoming messages
-    socket.on("receive_message", (data) => {
-      setMessageList((list) => [...list, data]);
+  useEffect(() => {
+    // setCurrentUserChat(...currentUserChat, { user: userID });
+    setCurrentUserChat((prev) => [...prev, { user: userID }]);
+    socket.current.emit("addUser", userID);
+    socket.current.on("getUsers", (users) => {
+      console.log(users);
     });
-
-    // Cleanup listener on dependency changes
-    return () => {
-      socket.off("receive_message");
-    };
-  }, [socket, room]);
+    socket.current.on("disconnect", () => {
+      setCurrentUserChat((prev) =>
+        prev.filter((current) => current.user !== userID)
+      );
+    });
+  }, [userID, currentUserChat]);
 
   const sendMessage = async () => {
-    if (currentMessage.trim() !== "") {
+    if (currentMessage !== "" || currentMessage.trim()) {
       const messageData = {
-        room: room,
-        author: sid,
-        message: currentMessage.trim(),
-        time:
+        sender: userID,
+        text: currentMessage,
+        createdAt:
           new Date(Date.now()).getHours() +
           " : " +
           new Date(Date.now()).getMinutes(),
       };
 
-      await socket.emit("send_message", messageData);
-      setMessageList((list) => [...list, messageData]);
-      setCurrentMessage(""); // Clear the input field
+      // const receiverId = currentUserChat.find((member) => member !== userID);
+      const receiverId = currentUserChat.find(
+        (member) => member.user !== userID
+      )?.user;
+      if (receiverId) {
+        socket.current.emit("sendMessage", {
+          senderId: userID,
+          receiverId,
+          messageData,
+        });
+      }
+
+      setMessageList((prev) => [
+        ...prev,
+        {
+          sender: userID,
+          text: currentMessage,
+          createdAt:
+            new Date().getHours() +
+            ":" +
+            String(new Date().getMinutes()).padStart(2, "0"),
+        },
+      ]);
+
+      setCurrentMessage("");
     }
   };
 
@@ -62,16 +103,16 @@ function Chat({ room, sid, fid }) {
       <div className="chat-body">
         {messageList.map((messageContent, index) => (
           <div
-            key={index}
+            key={index + 1}
             className="message"
-            id={sid === messageContent.author ? "you" : "other"}
+            id={userID === messageContent.sender ? "you" : "other"}
           >
             <div>
               <div className="message-content">
-                <p>{messageContent.message}</p>
+                <p>{messageContent.text}</p>
               </div>
               <div className="message-meta">
-                <p id="time">{messageContent.time}</p>
+                <p id="time">{messageContent.createdAt}</p>
               </div>
             </div>
           </div>
@@ -99,41 +140,49 @@ export default Chat;
 // import { useEffect, useState } from "react";
 // import { io } from "socket.io-client";
 
-// const socket = io.connect("https://projects-work-board.vercel.app", {
-//   withCredentials: true,
-//   transports: ["websocket"],
-// });
-
 // function Chat({ room, sid, fid }) {
 //   const [currentMessage, setCurrentMessage] = useState("");
 //   const [messageList, setMessageList] = useState([]);
+//   const [socket, setSocket] = useState(null);
 
 //   useEffect(() => {
-//     if (sid && room) {
+//     // Initialize socket
+//     const newSocket = io("https://projects-work-board.vercel.app", {
+//       withCredentials: true,
+//       transports: ["websocket"],
+//     });
+//     setSocket(newSocket);
+
+//     return () => {
+//       newSocket.disconnect(); // Cleanup socket on component unmount
+//     };
+//   }, []);
+
+//   useEffect(() => {
+//     if (!socket) return;
+
+//     // Join room
+//     if (room) {
 //       socket.emit("join_room", room);
 //     }
 
-//     if (fid && room) {
-//       socket.emit("join_room", room);
-//     }
-
+//     // Listen for incoming messages
 //     socket.on("receive_message", (data) => {
 //       setMessageList((list) => [...list, data]);
 //     });
 
+//     // Cleanup listener on dependency changes
 //     return () => {
-//       socket.off("receive_message", (data) => {
-//         setMessageList((list) => [...list, data]);
-//       });
+//       socket.off("receive_message");
 //     };
-//   }, [room]);
+//   }, [socket, room]);
 
 //   const sendMessage = async () => {
-//     if (currentMessage !== "") {
+//     if (currentMessage.trim() !== "") {
 //       const messageData = {
 //         room: room,
 //         author: sid,
-//         message: currentMessage,
+//         message: currentMessage.trim(),
 //         time:
 //           new Date(Date.now()).getHours() +
 //           " : " +
@@ -142,7 +191,7 @@ export default Chat;
 
 //       await socket.emit("send_message", messageData);
 //       setMessageList((list) => [...list, messageData]);
-//       setCurrentMessage(" ");
+//       setCurrentMessage(""); // Clear the input field
 //     }
 //   };
 
@@ -151,7 +200,7 @@ export default Chat;
 //       <div className="chat-body">
 //         {messageList.map((messageContent, index) => (
 //           <div
-//             key={index + 1}
+//             key={index}
 //             className="message"
 //             id={sid === messageContent.author ? "you" : "other"}
 //           >
@@ -161,7 +210,6 @@ export default Chat;
 //               </div>
 //               <div className="message-meta">
 //                 <p id="time">{messageContent.time}</p>
-//                 {/* <p id="author">{messageContent.author}</p> */}
 //               </div>
 //             </div>
 //           </div>

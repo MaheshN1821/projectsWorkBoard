@@ -15,8 +15,8 @@ import handleNotes from "./routes/notes.route.js";
 import handleRequest from "./routes/request.route.js";
 import handleNotification from "./routes/notify.route.js";
 
-import http from "http";
-import { Server } from "socket.io";
+// import http from "http";
+import socket from "socket.io";
 
 dotenv.config();
 const app = express();
@@ -51,9 +51,15 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-const server = http.createServer(app);
+const PORT = process.env.PORT || 3300;
 
-const io = new Server(server, {
+const server = app.listen(PORT, () => {
+  console.log(`Server is running in port ${PORT}`);
+});
+
+// const server = http.createServer(app);
+
+const io = socket(server, {
   cors: {
     origin: "https://projectsworkboard.vercel.app",
     methods: ["GET", "POST"],
@@ -61,31 +67,66 @@ const io = new Server(server, {
   },
 });
 
-// const io = new Server(server, {
-//   cors: {
-//     origin: "https://projectsworkboard.vercel.app",
-//   },
-// });
+let users = [];
+
+const addUsers = (userId, socketId) => {
+  !users.some((user) => user.userId === userId) &&
+    users.push({ userId, socketId });
+};
+
+const removeUser = (socketId) => {
+  users = users.filter((user) => user.socketId !== socketId);
+};
+
+const getUser = (userId) => {
+  return users.find((user) => user.userId === userId);
+};
 
 io.on("connection", (socket) => {
-  // console.log("User Connected!", socket.id);
+  console.log("user connected" + socket.id);
 
-  socket.on("join_room", (data) => {
-    socket.join(data);
-    console.log(`User with Id: ${socket.id} joined room: ${data}`);
+  socket.on("addUser", (userId) => {
+    addUsers(userId, socket.id);
+    io.emit("getUsers", users);
   });
 
-  socket.on("send_message", (data) => {
-    console.log(data.room, data.message);
-    socket.to(data.room).emit("receive_message", data);
+  socket.on("sendMessage", ({ senderId, receiverId, text }) => {
+    const user = getUser(receiverId);
+    if (user) {
+      io.to(user.socketId).emit("getMessage", { senderId, text });
+    } else {
+      console.log("Receiver not found:", receiverId);
+    }
+    // io.to(user.socketId).emit("getMessage", {
+    //   senderId,
+    //   text,
+    // });
   });
 
   socket.on("disconnect", () => {
-    console.log("User Disconnected!", socket.id);
+    console.log("user Disconnected");
+    removeUser(socket.id);
+    io.emit("getUsers", users);
   });
 });
 
-const PORT = process.env.PORT || 3300;
+// io.on("connection", (socket) => {
+//   // console.log("User Connected!", socket.id);
+
+//   socket.on("join_room", (data) => {
+//     socket.join(data);
+//     console.log(`User with Id: ${socket.id} joined room: ${data}`);
+//   });
+
+//   socket.on("send_message", (data) => {
+//     console.log(data.room, data.message);
+//     socket.to(data.room).emit("receive_message", data);
+//   });
+
+//   socket.on("disconnect", () => {
+//     console.log("User Disconnected!", socket.id);
+//   });
+// });
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -95,7 +136,3 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
-server.listen(PORT, () => {
-  console.log(`Server is running in port ${PORT}`);
-});

@@ -230,7 +230,7 @@ function ViewOngoing({ ongoing, index, count, setCount }) {
         className="ongoing-chat"
         style={{ display: displayChat ? "flex" : "none" }}
       >
-        <Chat room={room} sid={""} fid={fid} />
+        <Chat userID={fid} />
       </div>
     </div>
   );

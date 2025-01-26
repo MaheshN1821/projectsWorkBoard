@@ -159,7 +159,7 @@ function ViewTrack({ singleTrack, index, count, setCount }) {
         className="track-chat"
         style={{ display: displayChat ? "flex" : "none" }}
       >
-        <Chat room={room} sid={sid} fid={""} />
+        <Chat userID={sid} />
       </div>
       <div
         style={{ display: displayProfile ? "flex" : "none" }}
