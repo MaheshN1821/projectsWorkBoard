@@ -42,9 +42,9 @@ function Chat({ userID }) {
   useEffect(() => {
     setCurrentUserChat((prev) => [...prev, { user: userID }]);
     socket.current.emit("addUser", userID);
-    socket.current.on("getUsers", (users) => {
-      console.log(users);
-    });
+    // socket.current.on("getUsers", (users) => {
+    //   console.log(users);
+    // });
     socket.current.on("disconnect", () => {
       setCurrentUserChat((prev) =>
         prev.filter((current) => current.user !== userID)
