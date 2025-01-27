@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import "./viewOngoing.css";
-import Chat from "../../components/chat/chat";
+// import Chat from "../../components/chat/chat";
 import api from "../../utils/api";
+import FreelancerChat from "../../components/chat/freelancerChat";
 
 function ViewOngoing({ ongoing, index, count, setCount }) {
   const [displayChat, setDisplayChat] = useState(false);
@@ -229,10 +230,15 @@ function ViewOngoing({ ongoing, index, count, setCount }) {
         ))}
       </div>
       <div
-        className="ongoing-chat"
+        // className="ongoing-chat"
         style={{ display: displayChat ? "flex" : "none" }}
       >
-        {call ? <Chat userID={fid} /> : "Chat"}
+        {/* {call ? <Chat userID={fid} /> : "Chat"} */}
+        <FreelancerChat
+          projId={ongoing?._id}
+          freeId={ongoing?.freelancer}
+          studId={ongoing?.student}
+        />
       </div>
     </div>
   );

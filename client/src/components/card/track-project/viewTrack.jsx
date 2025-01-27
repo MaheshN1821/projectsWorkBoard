@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import "./viewTrack.css";
-import Chat from "../../chat/chat";
+// import Chat from "../../chat/chat";
 import api from "../../../utils/api";
 import Payment from "../../payment/payment";
+import UserChat from "../../chat/userChat";
 
 function ViewTrack({ singleTrack, index, count, setCount }) {
   const [displayChat, setDisplayChat] = useState(false);
@@ -158,10 +159,15 @@ function ViewTrack({ singleTrack, index, count, setCount }) {
         <Payment />
       </div>
       <div
-        className="track-chat"
+        // className="track-chat"
         style={{ display: displayChat ? "flex" : "none" }}
       >
-        {toCall ? <Chat userID={sid} /> : "Chat"}
+        {/* {toCall ? <Chat userID={sid} /> : "Chat"} */}
+        <UserChat
+          projId={singleTrack?._id}
+          freeId={singleTrack?.freelancer}
+          studId={singleTrack?.student}
+        />
       </div>
       <div
         style={{ display: displayProfile ? "flex" : "none" }}

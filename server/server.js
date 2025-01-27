@@ -14,6 +14,8 @@ import handleFreelancerInformation from "./routes/freelancer.route.js";
 import handleNotes from "./routes/notes.route.js";
 import handleRequest from "./routes/request.route.js";
 import handleNotification from "./routes/notify.route.js";
+import handleFreelancerChat from "./routes/freelancerChat.route.js";
+import handleUserChat from "./routes/userChat.routes.js";
 
 dotenv.config();
 const app = express();
@@ -43,6 +45,8 @@ app.use("/payment", handlePayment);
 app.use("/freelancer", handleFreelancerInformation);
 app.use("/request", handleRequest);
 app.use("/notify", handleNotification);
+app.use("/chat/user", handleUserChat);
+app.use("/chat/freelancer", handleFreelancerChat);
 
 app.get("/", (req, res) => {
   res.send("Hello World");

@@ -40,8 +40,8 @@ function Chat({ userID }) {
   }, [arrivalMessage, currentUserChat]);
 
   useEffect(() => {
-    setCurrentUserChat((prev) => [...prev, { user: userID }]);
     socket.current.emit("addUser", userID);
+    setCurrentUserChat((prev) => [...prev, { user: userID }]);
 
     socket.current.on("disconnect", () => {
       setCurrentUserChat((prev) =>
@@ -64,6 +64,7 @@ function Chat({ userID }) {
       const receiverId = currentUserChat.find(
         (member) => member.user !== userID
       )?.user;
+
       if (receiverId) {
         socket.current.emit("sendMessage", {
           senderId: userID,
