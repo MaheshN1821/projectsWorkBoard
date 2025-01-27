@@ -31,7 +31,7 @@ function PasswordReset() {
         password: data.password,
       };
       const response = await axios.post(
-        "http://localhost:3000/auth/student/password-reset",
+        "https://projects-work-board.vercel.app/auth/student/password-reset",
         newData,
         {
           headers: {

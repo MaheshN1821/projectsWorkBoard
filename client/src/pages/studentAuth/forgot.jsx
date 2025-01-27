@@ -22,8 +22,6 @@ function Forgot() {
   const [sentOtp, setSentOtp] = useState("");
   const Navigate = useNavigate();
 
-  // const notifyFailure = () => toast.error("Invalid Otp!");
-
   const handleOtpVerification = () => {
     if (Number(otpValue) === Number(sentOtp)) {
       Navigate("/student/login/password-reset");
@@ -36,7 +34,7 @@ function Forgot() {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/auth/student/email-verification",
+        "https://projects-work-board.vercel.app/auth/student/email-verification",
         JSON.stringify(data),
         {
           headers: {
