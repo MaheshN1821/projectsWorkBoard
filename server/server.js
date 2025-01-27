@@ -15,7 +15,7 @@ import handleNotes from "./routes/notes.route.js";
 import handleRequest from "./routes/request.route.js";
 import handleNotification from "./routes/notify.route.js";
 import handleFreelancerChat from "./routes/freelancerChat.route.js";
-import handleUserChat from "./routes/userChat.routes.js";
+import handleUserChat from "./routes/userChat.route.js";
 
 dotenv.config();
 const app = express();
