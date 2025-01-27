@@ -135,6 +135,12 @@ function StudentLogin() {
           ) : (
             ""
           )}
+          <span
+            className="link-forgot"
+            onClick={() => Navigate("/student/login/forgot-password")}
+          >
+            Forgot Password?
+          </span>
           <span className="link">
             <span>New student? </span>
             <span

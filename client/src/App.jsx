@@ -20,6 +20,8 @@ import Payment from "./components/payment/payment";
 import Completed from "./pages/freelancer/completed";
 import Request from "./pages/freelancer/request";
 import Session from "./pages/student/session";
+import Forgot from "./pages/studentAuth/forgot";
+import PasswordReset from "./pages/studentAuth/passwordReset";
 
 function App() {
   return (
@@ -31,6 +33,11 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/student/register" element={<StudentRegis />} />
         <Route path="/student/login" element={<StudentLogin />} />
+        <Route path="/student/login/forgot-password" element={<Forgot />} />
+        <Route
+          path="/student/login/password-reset"
+          element={<PasswordReset />}
+        />
         <Route path="/freelancer/register" element={<FreelancerRegis />} />
         <Route path="/freelancer/login" element={<FreelancerLogin />} />
         <Route path="/student" element={<Student />} />
