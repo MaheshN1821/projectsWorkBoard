@@ -12,7 +12,7 @@ const refreshTokenHandler = async (req, res) => {
     const existingUser = await User.findOne({ refreshToken: refToken });
 
     if (!existingUser) {
-      return res.status(401).json({ error: "Login Again!" });
+      return res.status(403).json({ error: "Login Again!" });
     }
 
     jwt.verify(refToken, process.env.SEC_REF, (err, user) => {
@@ -44,7 +44,7 @@ const refreshTokenFreelancerHandler = async (req, res) => {
     const existingUser = await Freelancer.findOne({ refreshToken: refToken });
 
     if (!existingUser) {
-      return res.status(401).json({ error: "Login Again!" });
+      return res.status(403).json({ error: "Login Again!" });
     }
 
     jwt.verify(refToken, process.env.SEC_REF, (err, user) => {

@@ -12,20 +12,23 @@ import handleSelected from "./routes/selected.route.js";
 import handlePayment from "./routes/payment.route.js";
 import handleFreelancerInformation from "./routes/freelancer.route.js";
 import handleNotes from "./routes/notes.route.js";
-
-import http from "http";
-import { Server } from "socket.io";
+import handleRequest from "./routes/request.route.js";
+import handleNotification from "./routes/notify.route.js";
+import handleFreelancerChat from "./routes/freelancerChat.route.js";
+import handleUserChat from "./routes/userChat.route.js";
 
 dotenv.config();
 const app = express();
 
 const corsOptions = {
-  method: "GET,POST",
+  method: ["GET", "POST"],
   allowedHeaders: "Content-Type,Authorization",
   credentials: true,
-  origin: "http://localhost:5173",
+  origin: "https://projectsworkboard.vercel.app",
   maxAge: 86400,
 };
+
+app.options("*", cors(corsOptions));
 
 app.use(cors(corsOptions));
 app.use(express.json());
@@ -40,38 +43,20 @@ app.use("/notes", handleNotes);
 app.use("/selected", handleSelected);
 app.use("/payment", handlePayment);
 app.use("/freelancer", handleFreelancerInformation);
+app.use("/request", handleRequest);
+app.use("/notify", handleNotification);
+app.use("/chat/user", handleUserChat);
+app.use("/chat/freelancer", handleFreelancerChat);
 
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-const server = http.createServer(app);
-
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:5173",
-  },
-});
-
-io.on("connection", (socket) => {
-  console.log("User Connected!", socket.id);
-
-  socket.on("join_room", (data) => {
-    socket.join(data);
-    console.log(`User with Id: ${socket.id} joined room: ${data}`);
-  });
-
-  socket.on("send_message", (data) => {
-    console.log(data.room, data.message);
-    socket.to(data.room).emit("receive_message", data);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("User Disconnected!", socket.id);
-  });
-});
-
 const PORT = process.env.PORT || 3300;
+
+app.listen(PORT, () => {
+  console.log(`Server is running in port ${PORT}`);
+});
 
 mongoose
   .connect(process.env.MONGO_URL)
@@ -81,11 +66,3 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
-// app.listen(PORT, () => {
-//   console.log(`Server is running in port ${PORT}`);
-// });
-
-server.listen(PORT, () => {
-  console.log(`Server is running in port ${PORT}`);
-});

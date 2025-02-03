@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "../../components/header/header";
 import Navbar from "../../components/navbar/navbar";
 import "./about.css";
@@ -33,7 +33,8 @@ function About() {
     },
     {
       question: "Can I edit or delete a project after listing it?",
-      answer: "Yes, clients can edit or delete their projects through their dashboard.",
+      answer:
+        "Yes, clients can edit or delete their projects through their dashboard.",
     },
   ];
 
@@ -43,35 +44,45 @@ function About() {
       <Navbar />
       <div className="about-page-wrapper">
         <div className="about-content">
-          <h1>USER MANUAL</h1>
           <p>
-            <strong>ProjectsWorkBoard</strong> is a one-stop platform for freelancers and clients.
-            It facilitates seamless collaboration by allowing clients to list projects and freelancers
-            to quote estimated costs and delivery times. Clients can choose freelancers based on
+            <strong>ProjectsWorkBoard</strong> is a one-stop platform for
+            freelancers and clients. It facilitates seamless collaboration by
+            allowing clients to list projects and freelancers to quote estimated
+            costs and delivery times. Clients can choose freelancers based on
             their preferences and connect with them effortlessly.
           </p>
-          <ol>
-            <li>
-              <strong>Step 1:</strong> Login either as a freelancer or a client.
-            </li>
-            <li>
-              <strong>Step 2:</strong> Based on your role:
-              <ul>
+          <div className="outer">
+            <div className="manual">
+              <h1>USER MANUAL</h1>
+              <ol>
                 <li>
-                  <strong>Client:</strong> You can list a new project, check listed projects, and manage other activities.
+                  <strong>Step 1:</strong> Login either as a freelancer or a
+                  client.
                 </li>
                 <li>
-                  <strong>Freelancer:</strong> You can view listed projects, quote for projects, set deadlines, etc.
+                  <strong>Step 2:</strong> Based on your role:
+                  <ul>
+                    <li className="abc">
+                      <strong>Client:</strong> You can list a new project, check
+                      listed projects, and manage other activities.
+                    </li>
+                    <li className="abc">
+                      <strong>Freelancer:</strong> You can view listed projects,
+                      quote for projects, set deadlines, etc.
+                    </li>
+                  </ul>
                 </li>
-              </ul>
-            </li>
-            <li>
-              <strong>Step 3:</strong> Freelancers and clients can chat in real-time to discuss queries and finalize details.
-            </li>
-          </ol>
+                <li>
+                  <strong>Step 3:</strong> Freelancers and clients can chat in
+                  real-time to discuss queries and finalize details.
+                </li>
+              </ol>
+            </div>
+          </div>
           <p>
-            Whether you're a client with a vision or a freelancer with expertise, ProjectsWorkBoard is the
-            ideal platform to bring your ideas to life.
+            Whether you are a client with a vision or a freelancer with
+            expertise, ProjectsWorkBoard is the ideal platform to bring your
+            ideas to life.
           </p>
           <p>Here is a demo video for freelancers</p>
           <div className="video-container">
@@ -81,26 +92,28 @@ function About() {
             </video>
           </div>
           <p>Here is a demo video for clients</p>
-          <div className="video-container">
+          <div className="video-container two">
             <video controls>
               <source src="/path-to-demo-video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
-          <div className="faq-section">
-            <h2>Frequently Asked Questions</h2>
-            {faqData.map((faq, index) => (
-              <div
-                key={index}
-                className={`faq ${openFaq === index ? "open" : ""}`}
-              >
-                <h3 onClick={() => toggleFaq(index)}>
-                  {faq.question}
-                  <span>{openFaq === index ? "▲" : "▼"}</span>
-                </h3>
-                <p>{faq.answer}</p>
-              </div>
-            ))}
+          <div className="faqCont">
+            <div className="faq-section">
+              <h2>Frequently Asked Questions</h2>
+              {faqData.map((faq, index) => (
+                <div
+                  key={index}
+                  className={`faq ${openFaq === index ? "open" : ""}`}
+                >
+                  <h3 onClick={() => toggleFaq(index)}>
+                    {faq.question}
+                    <span>{openFaq === index ? "▲" : "▼"}</span>
+                  </h3>
+                  <p>{faq.answer}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

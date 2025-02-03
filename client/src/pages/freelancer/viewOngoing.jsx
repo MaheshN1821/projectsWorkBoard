@@ -1,22 +1,29 @@
 import { useEffect, useState } from "react";
 import "./viewOngoing.css";
-import Chat from "../../components/chat/chat";
+// import Chat from "../../components/chat/chat";
 import api from "../../utils/api";
+import FreelancerChat from "../../components/chat/freelancerChat";
 
-function ViewOngoing({ ongoing, index }) {
+function ViewOngoing({ ongoing, index, count, setCount }) {
   const [displayChat, setDisplayChat] = useState(false);
+  const [call, setCall] = useState(false);
   const [displayAddNote, setDisplayAddNote] = useState(false);
   const [toDisplayNotes, setToDisplayNotes] = useState(false);
   const [displayKeyPoints, setDisplayKeyPoints] = useState(false);
   const [studentName, setStudentName] = useState("M");
   const [notes, setNotes] = useState("");
   const [notesToRender, setNotesToRender] = useState([]);
+  const [projprogress, setProjProgress] = useState(1);
+  const [studPhoneNum, setStudPhoneNum] = useState("");
+  const [studEmail, setStudEmail] = useState("");
+  const [displayStudent, setDisplayStudent] = useState(false);
 
   const room = ongoing?._id;
   const fid = ongoing?.freelancer;
 
   function handleChatClick() {
     setDisplayChat(!displayChat);
+    setCall(!call);
   }
 
   function handleKeyPointsClick() {
@@ -67,6 +74,62 @@ function ViewOngoing({ ongoing, index }) {
     }
   }
 
+  async function handleStudentInfo() {
+    const studId = ongoing?.student;
+    try {
+      const val = await api.get(`/student/single/${studId}`);
+      const data = val.data.studentInfo;
+      setDisplayStudent(!displayStudent);
+      setStudEmail(data.email);
+      setStudPhoneNum(data.phone_number);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function handleProgressUpdation() {
+    try {
+      const data = {
+        progress: projprogress,
+        projId: ongoing?._id,
+      };
+      const val = await api.post("/freelancer/progress-updation", data);
+
+      console.log(val);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function handleComplete() {
+    try {
+      const data = {
+        project_title: ongoing?.project_title,
+        project_description: ongoing?.project_description,
+        completion_date: new Date(Date.now()).toString(),
+        techStack: ongoing?.techStack,
+        freelancer: ongoing?.freelancer,
+        student: ongoing?.student,
+      };
+
+      const val1 = await api.post("/freelancer/save-completed", data);
+
+      console.log(val1.data);
+
+      const data2 = {
+        progress: "Completed",
+        projId: ongoing?._id,
+      };
+      const val2 = await api.post("/freelancer/progress-updation", data2);
+
+      console.log(val2.data);
+
+      count > 1000 ? setCount(0) : setCount(count + 1);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   useEffect(() => {
     async function getName() {
       try {
@@ -85,7 +148,9 @@ function ViewOngoing({ ongoing, index }) {
       <div className="ongoing-contents">
         <div className="on-sl">{index + 1}</div>
         <div className="on-pt">{ongoing?.project_title}</div>
-        <div className="on-sn">{studentName}</div>
+        <div className="on-sn" onClick={handleStudentInfo}>
+          {studentName}
+        </div>
         <div className="on-a">
           <span onClick={handleChatClick} className="on-chat">
             Chat
@@ -96,8 +161,17 @@ function ViewOngoing({ ongoing, index }) {
           <span className="on-delete" onClick={handleDeletion}>
             Delete
           </span>
-          <span className="on-complete">Completed</span>
+          <span className="on-complete" onClick={handleComplete}>
+            Completed
+          </span>
         </div>
+      </div>
+      <div
+        style={{ display: displayStudent ? "flex" : "none" }}
+        className="stud-info-display"
+      >
+        <p className="stud-pn">Phone number: {studPhoneNum}</p>
+        <p className="stud-em">Email: {studEmail}</p>
       </div>
       <div
         className="key-points-1"
@@ -111,6 +185,19 @@ function ViewOngoing({ ongoing, index }) {
         </div>
         <div className="display-note" onClick={handleDisplayNotes}>
           Display Notes
+        </div>
+        <div className="progress">
+          <label>Progress %</label>
+          <input
+            type="number"
+            name="progress"
+            id="progress"
+            value={projprogress}
+            onChange={(e) => setProjProgress(e.target.value)}
+          />
+          <span onClick={handleProgressUpdation} className="p-up">
+            Update
+          </span>
         </div>
       </div>
       <div
@@ -143,10 +230,15 @@ function ViewOngoing({ ongoing, index }) {
         ))}
       </div>
       <div
-        className="ongoing-chat"
+        // className="ongoing-chat"
         style={{ display: displayChat ? "flex" : "none" }}
       >
-        <Chat room={room} sid={""} fid={fid} />
+        {/* {call ? <Chat userID={fid} /> : "Chat"} */}
+        <FreelancerChat
+          projId={ongoing?._id}
+          freeId={ongoing?.freelancer}
+          studId={ongoing?.student}
+        />
       </div>
     </div>
   );

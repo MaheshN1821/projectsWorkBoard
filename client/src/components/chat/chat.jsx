@@ -1,48 +1,91 @@
 import "./chat.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io.connect("http://localhost:3000");
-
-function Chat({ room, sid, fid }) {
+function Chat({ userID }) {
   const [currentMessage, setCurrentMessage] = useState("");
+  const [currentUserChat, setCurrentUserChat] = useState([]);
   const [messageList, setMessageList] = useState([]);
+  const [arrivalMessage, setArrivalMessage] = useState(null);
+  const socket = useRef();
 
   useEffect(() => {
-    if (sid && room) {
-      socket.emit("join_room", room);
-    }
-
-    if (fid && room) {
-      socket.emit("join_room", room);
-    }
-
-    socket.on("receive_message", (data) => {
-      setMessageList((list) => [...list, data]);
+    socket.current = io("https://sockets-gosz.onrender.com", {
+      withCredentials: true,
+      transports: ["websocket", "polling"],
+    });
+    socket.current.on("getMessage", (data) => {
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createdAt:
+          new Date(Date.now()).getHours() +
+          " : " +
+          new Date(Date.now()).getMinutes(),
+      });
     });
 
     return () => {
-      socket.off("receive_message", (data) => {
-        setMessageList((list) => [...list, data]);
-      });
+      socket.current.disconnect();
     };
-  }, [room]);
+  }, []);
+
+  useEffect(() => {
+    if (
+      arrivalMessage &&
+      currentUserChat.some((user) => user.user === arrivalMessage.sender)
+    ) {
+      setMessageList((prev) => [...prev, arrivalMessage]);
+    }
+  }, [arrivalMessage, currentUserChat]);
+
+  useEffect(() => {
+    socket.current.emit("addUser", userID);
+    setCurrentUserChat((prev) => [...prev, { user: userID }]);
+
+    socket.current.on("disconnect", () => {
+      setCurrentUserChat((prev) =>
+        prev.filter((current) => current.user !== userID)
+      );
+    });
+  }, [userID, currentUserChat]);
 
   const sendMessage = async () => {
-    if (currentMessage !== "") {
+    if (currentMessage !== "" || currentMessage.trim()) {
       const messageData = {
-        room: room,
-        author: sid,
-        message: currentMessage,
-        time:
+        sender: userID,
+        text: currentMessage,
+        createdAt:
           new Date(Date.now()).getHours() +
           " : " +
           new Date(Date.now()).getMinutes(),
       };
 
-      await socket.emit("send_message", messageData);
-      setMessageList((list) => [...list, messageData]);
-      setCurrentMessage(" ");
+      const receiverId = currentUserChat.find(
+        (member) => member.user !== userID
+      )?.user;
+
+      if (receiverId) {
+        socket.current.emit("sendMessage", {
+          senderId: userID,
+          receiverId,
+          messageData,
+        });
+      }
+
+      setMessageList((prev) => [
+        ...prev,
+        {
+          sender: userID,
+          text: currentMessage,
+          createdAt:
+            new Date().getHours() +
+            ":" +
+            String(new Date().getMinutes()).padStart(2, "0"),
+        },
+      ]);
+
+      setCurrentMessage("");
     }
   };
 
@@ -53,15 +96,14 @@ function Chat({ room, sid, fid }) {
           <div
             key={index + 1}
             className="message"
-            id={sid === messageContent.author ? "you" : "other"}
+            id={userID === messageContent.sender ? "you" : "other"}
           >
             <div>
               <div className="message-content">
-                <p>{messageContent.message}</p>
+                <p>{messageContent.text}</p>
               </div>
               <div className="message-meta">
-                <p id="time">{messageContent.time}</p>
-                <p id="author">{messageContent.author}</p>
+                <p id="time">{messageContent.createdAt}</p>
               </div>
             </div>
           </div>
@@ -72,6 +114,7 @@ function Chat({ room, sid, fid }) {
           className="chat-in"
           type="text"
           placeholder="Enter a message!"
+          value={currentMessage}
           onChange={(e) => setCurrentMessage(e.target.value)}
         />
         <button onClick={sendMessage} className="chat-send">

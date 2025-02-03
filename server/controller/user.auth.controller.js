@@ -130,13 +130,13 @@ const handleUserLogin = async (req, res) => {
     });
 
     const refToken = jwt.sign({ email: email }, process.env.SEC_REF, {
-      expiresIn: 24 * 60 * 60 * 100,
+      expiresIn: "8h",
     });
 
     res.cookie("jwt", refToken, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 100,
-      secure: false,
+      secure: true,
+      maxAge: 60 * 60 * 24 * 7,
     });
 
     const response = await User.findByIdAndUpdate(
@@ -156,35 +156,35 @@ const handleUserLogin = async (req, res) => {
 };
 
 const handleUserLogout = async (req, res) => {
-  const refToken = req?.cookies?.jwt;
+  // const refToken = req?.cookies?.jwt;
 
-  if (!refToken) {
-    return res.sendStatus(401);
-  }
+  // if (!refToken) {
+  //   console.log("im in 1st if");
+  //   return res.sendStatus(401);
+  // }
 
   try {
-    const existingUser = await User.findOne({ refreshToken: refToken });
+    // const existingUser = await User.findOne({ refreshToken: refToken });
 
-    if (!existingUser) {
-      res.clearCookie("jwt", {
-        httpOnly: true,
-        maxAge: 24 * 60 * 60 * 100,
-        secure: false,
-      });
-      return res.status(200).json({ message: "Logout Successfull!" });
-    }
+    // if (!existingUser) {
+    //   res.clearCookie("jwt", {
+    //     httpOnly: true,
+    //     secure: true,
+    //   });
+    //   console.log("im in 2nd if");
+    //   return res.status(200).json({ message: "Logout Successfull!" });
+    // }
 
-    await User.findByIdAndUpdate(
-      existingUser._id,
-      { refreshToken: "" },
-      { new: true }
-    );
+    // await User.findByIdAndUpdate(
+    //   existingUser._id,
+    //   { refreshToken: "" },
+    //   { new: true }
+    // );
 
-    res.clearCookie("jwt", {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 100,
-      secure: false,
-    });
+    // res.clearCookie("jwt", {
+    //   httpOnly: true,
+    //   secure: true,
+    // });
 
     return res.status(200).json({ message: "Logout Successfull!" });
   } catch (err) {

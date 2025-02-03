@@ -1,4 +1,5 @@
 import "./App.css";
+import { Analytics } from "@vercel/analytics/react";
 import LandingPage from "./pages/landingPage/landingPage";
 import { Routes, Route } from "react-router-dom";
 import About from "./pages/aboutPage/about";
@@ -16,6 +17,11 @@ import TrackProject from "./pages/student/trackProject";
 import FreelancerView from "./pages/freelancer/freelancerView";
 import OngoingProject from "./pages/freelancer/ongoingProject";
 import Payment from "./components/payment/payment";
+import Completed from "./pages/freelancer/completed";
+import Request from "./pages/freelancer/request";
+import Session from "./pages/student/session";
+import Forgot from "./pages/studentAuth/forgot";
+import PasswordReset from "./pages/studentAuth/passwordReset";
 
 function App() {
   return (
@@ -27,12 +33,19 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/student/register" element={<StudentRegis />} />
         <Route path="/student/login" element={<StudentLogin />} />
+        <Route path="/student/login/forgot-password" element={<Forgot />} />
+        <Route
+          path="/student/login/password-reset"
+          element={<PasswordReset />}
+        />
         <Route path="/freelancer/register" element={<FreelancerRegis />} />
         <Route path="/freelancer/login" element={<FreelancerLogin />} />
         <Route path="/student" element={<Student />} />
         <Route path="/freelancer" element={<Freelancer />} />
         <Route path="/freelancer/manage-account" element={<ManageAccount />} />
         <Route path="/freelancer/view-project" element={<FreelancerView />} />
+        <Route path="/freelancer/completed" element={<Completed />} />
+        <Route path="/freelancer/request" element={<Request />} />
         <Route
           path="/freelancer/ongoing-project"
           element={<OngoingProject />}
@@ -40,7 +53,9 @@ function App() {
         <Route path="/student/list-project" element={<ListProject />} />
         <Route path="/student/view-project" element={<ViewProject />} />
         <Route path="/student/track-project" element={<TrackProject />} />
+        <Route path="/student/request" element={<Session />} />
       </Routes>
+      <Analytics />
     </>
   );
 }

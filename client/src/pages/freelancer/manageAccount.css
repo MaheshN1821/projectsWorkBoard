@@ -2,14 +2,12 @@
   background-color: #016396;
   height: fit-content;
   color: aliceblue;
-  /* padding: 0px 0px 20px 0px; */
 }
 
 .free-wrapper-1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* margin: 20px 20px 0px 20px; */
 }
 
 .account-content {
@@ -18,8 +16,6 @@
   background-color: white;
   color: black;
   padding: 20px;
-  /* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, */
-  /* rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,11 +33,10 @@
   justify-content: center;
 }
 
-/* Ensure both containers are the same size */
 .acc-cont-1 {
   background-color: rgba(0, 0, 0, 0.014);
   color: #333;
-  width: 28%; /* Same width as acc-cont-1 */
+  width: 28%;
   height: fit-content;
   margin: 20px;
   padding: 20px;
@@ -49,11 +44,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
-    rgba(17, 17, 26, 0.05) 0px 8px 32px; */
-  /* box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px; */
-  /* box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;*/
-  /* box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px; */
   box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
     rgba(17, 17, 26, 0.05) 0px 8px 32px;
 }
@@ -95,8 +85,12 @@
   color: #333;
 }
 
+.acc-cont-1 input {
+  padding: 6px;
+}
+
 .info-head-1 {
-  margin: 20px 0px 40px 0px;
+  margin: 20px 0px 34px 0px;
   text-align: center;
 }
 

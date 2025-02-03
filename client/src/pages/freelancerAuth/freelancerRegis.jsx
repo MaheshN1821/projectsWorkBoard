@@ -17,12 +17,13 @@ function FreelancerRegis() {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/auth/freelancer/register",
+        "https://projects-work-board.vercel.app/auth/freelancer/register",
         JSON.stringify(data),
         {
           headers: {
             "Content-Type": "application/json",
           },
+          withCredentials: true,
         }
       );
 

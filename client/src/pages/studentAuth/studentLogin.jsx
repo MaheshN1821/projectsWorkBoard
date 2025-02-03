@@ -24,7 +24,7 @@ function StudentLogin() {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/auth/student/login",
+        "https://projects-work-board.vercel.app/auth/student/login",
         JSON.stringify(data),
         {
           headers: {
@@ -135,6 +135,12 @@ function StudentLogin() {
           ) : (
             ""
           )}
+          <span
+            className="link-forgot"
+            onClick={() => Navigate("/student/login/forgot-password")}
+          >
+            Forgot Password?
+          </span>
           <span className="link">
             <span>New student? </span>
             <span

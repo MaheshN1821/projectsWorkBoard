@@ -131,13 +131,13 @@ const handleFreelancerLogin = async (req, res) => {
     });
 
     const refToken = jwt.sign({ email: email }, process.env.SEC_REF, {
-      expiresIn: 24 * 60 * 60 * 100,
+      expiresIn: "8h",
     });
 
     res.cookie("jwt", refToken, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 100,
-      secure: false,
+      secure: true,
+      maxAge: 60 * 60 * 24 * 7,
     });
 
     const response = await Freelancer.findByIdAndUpdate(
@@ -156,35 +156,33 @@ const handleFreelancerLogin = async (req, res) => {
 };
 
 const handleFreelancerLogout = async (req, res) => {
-  const refToken = req?.cookies?.jwt;
+  // const refToken = req?.cookies?.jwt;
 
-  if (!refToken) {
-    return res.sendStatus(403);
-  }
+  // if (!refToken) {
+  //   return res.sendStatus(403);
+  // }
 
   try {
-    const existingUser = await Freelancer.findOne({ refreshToken: refToken });
+    // const existingUser = await Freelancer.findOne({ refreshToken: refToken });
 
-    if (!existingUser) {
-      res.clearCookie("jwt", {
-        httpOnly: true,
-        maxAge: 24 * 60 * 60 * 100,
-        secure: false,
-      });
-      return res.sendStatus(204);
-    }
+    // if (!existingUser) {
+    //   res.clearCookie("jwt", {
+    //     httpOnly: true,
+    //     secure: true,
+    //   });
+    //   return res.sendStatus(204);
+    // }
 
-    await User.findByIdAndUpdate(
-      existingUser._id,
-      { refreshToken: "" },
-      { new: true }
-    );
+    // await Freelancer.findByIdAndUpdate(
+    //   existingUser._id,
+    //   { refreshToken: "" },
+    //   { new: true }
+    // );
 
-    res.clearCookie("jwt", {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 100,
-      secure: false,
-    });
+    // res.clearCookie("jwt", {
+    //   httpOnly: true,
+    //   secure: true,
+    // });
 
     return res.status(204).json({ message: "Logout Successfull!" });
   } catch (err) {

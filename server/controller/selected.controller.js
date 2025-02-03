@@ -25,8 +25,9 @@ const handleSaveSelected = async (req, res) => {
 };
 
 const handleGetSelected = async (req, res) => {
+  const freeId = req.params.freeId;
   try {
-    const response = await Selected.find();
+    const response = await Selected.find({ freelancer: freeId });
     res.status(200).json({ response });
   } catch (err) {
     console.log(err);
