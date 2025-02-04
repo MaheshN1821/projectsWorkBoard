@@ -36,6 +36,11 @@ function About() {
       answer:
         "Yes, clients can edit or delete their projects through their dashboard.",
     },
+    {
+      question:
+        "How to verify whether the student/professional or freelancer is genuine",
+      answer: "You can verify by contacting the support team",
+    },
   ];
 
   return (
@@ -84,7 +89,7 @@ function About() {
             expertise, ProjectsWorkBoard is the ideal platform to bring your
             ideas to life.
           </p>
-          <p>Here is a demo video for freelancers</p>
+          {/* <p>Here is a demo video for freelancers</p>
           <div className="video-container">
             <video controls>
               <source src="/path-to-demo-video.mp4" type="video/mp4" />
@@ -97,7 +102,7 @@ function About() {
               <source src="/path-to-demo-video.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
-          </div>
+          </div> */}
           <div className="faqCont">
             <div className="faq-section">
               <h2>Frequently Asked Questions</h2>
