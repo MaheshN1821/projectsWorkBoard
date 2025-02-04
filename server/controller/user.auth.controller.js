@@ -4,9 +4,21 @@ import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 
 const handleUserRegister = async (req, res) => {
-  const { username, phone_number, age, email, password } = req.body;
+  const {
+    username,
+    phone_number,
+    age,
+    email,
+    password,
+    aadhar,
+    college_address,
+    college_name,
+    company_name,
+    job_role,
+    student_usn,
+  } = req.body;
 
-  if (!username || !phone_number || !age || !email || !password) {
+  if (!username || !phone_number || !age || !email || !password || !aadhar) {
     return res.status(400).json({ error: "Enter all the Details" });
   }
 
@@ -25,6 +37,12 @@ const handleUserRegister = async (req, res) => {
       age: age,
       email: email,
       password: hashedPwd,
+      aadhar: aadhar,
+      college_address: college_address ? college_address : "N/A",
+      college_name: college_name ? college_name : "N/A",
+      company_name: company_name ? company_name : "N/A",
+      job_role: job_role ? job_role : "N/A",
+      student_usn: student_usn ? student_usn : "N/A",
     });
 
     const result = await newUser.save();
@@ -41,6 +59,45 @@ const handleUserRegister = async (req, res) => {
     return res.status(500).json({ error: "Try again later!" });
   }
 };
+
+// const handleUserRegister = async (req, res) => {
+//   const { username, phone_number, age, email, password } = req.body;
+
+//   if (!username || !phone_number || !age || !email || !password) {
+//     return res.status(400).json({ error: "Enter all the Details" });
+//   }
+
+//   try {
+//     const userExists = await User.findOne({ email: email });
+
+//     if (userExists) {
+//       return res.status(409).json({ error: "Email Id exists!" });
+//     }
+
+//     const hashedPwd = await bcrypt.hash(password, 10);
+
+//     const newUser = await User.create({
+//       username: username,
+//       phone_number: phone_number,
+//       age: age,
+//       email: email,
+//       password: hashedPwd,
+//     });
+
+//     const result = await newUser.save();
+
+//     if (result) {
+//       return res
+//         .status(201)
+//         .json({ message: "User Registration Successfull!" });
+//     } else {
+//       return res.status(500).json({ error: "Try again later!" });
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(500).json({ error: "Try again later!" });
+//   }
+// };
 
 const handleEmail = async (req, res) => {
   const { email } = req.body;
