@@ -4,9 +4,18 @@ import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 
 const handleFreelancerRegister = async (req, res) => {
-  const { username, phone_number, address, email, password } = req.body;
+  const { username, phone_number, address, email, password, aadhar, panNum } =
+    req.body;
 
-  if (!username || !phone_number || !address || !email || !password) {
+  if (
+    !username ||
+    !phone_number ||
+    !address ||
+    !email ||
+    !password ||
+    !aadhar ||
+    !panNum
+  ) {
     return res.status(400).json({ error: "Enter all the Details" });
   }
 
@@ -25,6 +34,8 @@ const handleFreelancerRegister = async (req, res) => {
       address: address,
       email: email,
       password: hashedPwd,
+      aadhar: aadhar,
+      panNum: panNum,
     });
 
     const result = await newUser.save();
@@ -41,6 +52,45 @@ const handleFreelancerRegister = async (req, res) => {
     return res.status(500).json({ error: "Try again later!" });
   }
 };
+
+// const handleFreelancerRegister = async (req, res) => {
+//   const { username, phone_number, address, email, password } = req.body;
+
+//   if (!username || !phone_number || !address || !email || !password) {
+//     return res.status(400).json({ error: "Enter all the Details" });
+//   }
+
+//   try {
+//     const userExists = await Freelancer.findOne({ email: email });
+
+//     if (userExists) {
+//       return res.status(409).json({ error: "Email Id exists!" });
+//     }
+
+//     const hashedPwd = await bcrypt.hash(password, 10);
+
+//     const newUser = await Freelancer.create({
+//       username: username,
+//       phone_number: phone_number,
+//       address: address,
+//       email: email,
+//       password: hashedPwd,
+//     });
+
+//     const result = await newUser.save();
+
+//     if (result) {
+//       return res
+//         .status(201)
+//         .json({ message: "freelancer Registration Successfull!" });
+//     } else {
+//       return res.status(500).json({ error: "Try again later!" });
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     return res.status(500).json({ error: "Try again later!" });
+//   }
+// };
 
 const handleFreelancerEmail = async (req, res) => {
   const { email } = req.body;

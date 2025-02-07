@@ -13,6 +13,12 @@ const freelancerSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  panNum: {
+    type: String,
+  },
+  aadhar: {
+    type: String,
+  },
   email: {
     type: String,
     required: true,

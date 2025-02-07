@@ -142,7 +142,7 @@ function StudentLogin() {
             Forgot Password?
           </span>
           <span className="link">
-            <span>New student? </span>
+            <span>New student/Professional? </span>
             <span
               onClick={() => Navigate("/student/register")}
               style={{ cursor: "pointer", fontWeight: "bold" }}
