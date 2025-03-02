@@ -2,6 +2,7 @@
 
 ## Overview
 ProjectsWorkBoard is a dynamic freelancing platform that connects clients with freelancers. Clients can list projects with detailed requirements, and freelancers can browse available projects, submit proposals, and complete tasks based on provided information. The platform ensures a seamless workflow with secure authentication, real-time project updates, and integrated payment processing. Built with the MERN stack, it offers a user-friendly dashboard, role-based access control, and an efficient system for managing projects from start to completion.
+Website Link: https://projectsworkboard.vercel.app/
 
 ## Features
 - Client Project Listings: Allows clients to post projects with detailed requirements, deadlines, and budgets for freelancers to explore.
@@ -21,7 +22,7 @@ ProjectsWorkBoard is a dynamic freelancing platform that connects clients with f
 - Nodemailer
 - Phone-pe Payment gateway
 - Vercel
-
+   
 ## Installation
 1. Clone the repository:
    ```sh
@@ -31,12 +32,27 @@ ProjectsWorkBoard is a dynamic freelancing platform that connects clients with f
    ```sh
    cd projectsWorkBoard
    ```
-3. Install the dependencies:
+3. Navigate to the client directory by creating a new terminal:
+   ```sh
+   cd client
+   ```
+4. Install the dependencies:
    ```sh
    npm install --legacy-peer-deps
    ```
-4. Start the development server:
+5. Start the development server:
+   ```sh
+   npm run dev
+   ```
+6. Navigate to the server directory by creating a new terminal:
+   ```sh
+   cd server
+   ```
+7. Install the dependencies:
+   ```sh
+   npm install --legacy-peer-deps
+   ```
+8. Start the server:
    ```sh
    npm start
    ```
-
