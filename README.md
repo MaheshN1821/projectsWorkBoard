@@ -1,4 +1,4 @@
-# projectsWorkBoard
+# ProjectsWorkBoard
 
 ## Overview
 ProjectsWorkBoard is a dynamic freelancing platform that connects clients with freelancers. Clients can list projects with detailed requirements, and freelancers can browse available projects, submit proposals, and complete tasks based on provided information. The platform ensures a seamless workflow with secure authentication, real-time project updates, and integrated payment processing. Built with the MERN stack, it offers a user-friendly dashboard, role-based access control, and an efficient system for managing projects from start to completion.
