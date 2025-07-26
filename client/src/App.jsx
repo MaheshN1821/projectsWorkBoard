@@ -30,11 +30,13 @@ import Pwb from "./pwb";
 import Success from "./components/payment/Success";
 import MainLandingPage from "./pages/MainLandingPage";
 import ManageClientAccount from "./pages/student/ManageClientAccount";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
       <Layout>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<MainLandingPage />} />
           <Route path="/collaborate/*" element={<Collaborate />} />

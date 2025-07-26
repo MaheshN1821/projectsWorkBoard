@@ -230,7 +230,7 @@ function LandingPage() {
                   Log In
                 </Link>
                 <Link
-                  to="/pwb/signup"
+                  to="/pwb/register"
                   className="px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300"
                 >
                   Sign Up
@@ -254,7 +254,7 @@ function LandingPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="bg-[url(../../../public/bg2.png)] bg-right bg-contain bg-no-repeat lg:pr-10 no-bg-custom"
+              className="bg-[url('/bg2.png')] bg-right bg-contain bg-no-repeat lg:pr-10 no-bg-custom"
             >
               <div className="mb-6 inline-block px-3 py-1 bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-100 rounded-full">
                 <span className="text-sm font-medium bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
