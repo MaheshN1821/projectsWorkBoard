@@ -15,7 +15,7 @@ function UserChat({ projId, freeId, studId }) {
       };
       const val = await api.post("/chat/user/get-messages", data);
       setMessageList(val.data.response);
-      console.log(val.data.response);
+      // console.log(val.data.response);
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +44,7 @@ function UserChat({ projId, freeId, studId }) {
         if (val) {
           alert("sent Successfully");
         }
-        console.log(val);
+        // console.log(val);
       } catch (err) {
         console.log(err);
       }

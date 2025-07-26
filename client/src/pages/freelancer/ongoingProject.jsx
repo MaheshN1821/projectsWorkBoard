@@ -38,7 +38,7 @@ const OngoingProjects = () => {
       // const filteredData = response.data.filter(
       //   (project) => project.status === "In Progress"
       // );
-      console.log(response);
+      // console.log(response);
 
       setOngoingData(response.data);
       setLoading(false);

@@ -33,7 +33,7 @@ function ViewTrack({ singleTrack, index, count, setCount }) {
 
       const val = await api.post("/student/decline", data);
 
-      console.log(val);
+      // console.log(val);
       if (val) {
         count < 1000 ? setCount(count + 1) : setCount(0);
       }

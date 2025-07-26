@@ -46,7 +46,7 @@ const PwbProjectDetails = () => {
         setProject(res.data);
         setNotes(res.data.notes || []);
         setNewProgress(res.data.progress.toString());
-        console.log(res.data);
+        // console.log(res.data);
       } catch (err) {
         console.error("Error fetching project:", err);
       }
@@ -122,7 +122,7 @@ const PwbProjectDetails = () => {
           },
         }
       );
-      console.log(response);
+      // console.log(response);
       alert("Success!");
     } catch (error) {
       console.log(error);

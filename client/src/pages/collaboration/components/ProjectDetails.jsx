@@ -26,7 +26,7 @@ export default function ProjectDetails() {
   const { user, isAuthenticated } = useAuth();
   const { project, userData, loading, error, toggleInterest } = useProject(id);
 
-  console.log(project);
+  // console.log(project);
 
   const [showContactForm, setShowContactForm] = useState(false);
   const [contactMessage, setContactMessage] = useState("");

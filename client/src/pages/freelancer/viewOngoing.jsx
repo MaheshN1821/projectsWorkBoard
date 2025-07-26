@@ -37,7 +37,7 @@ function ViewOngoing({ ongoing, index, count, setCount }) {
         freeId: ongoing?.freelancer,
       });
 
-      console.log(response);
+      // console.log(response);
     } catch (err) {
       console.log(err);
       alert("Try again Later!");
@@ -53,7 +53,7 @@ function ViewOngoing({ ongoing, index, count, setCount }) {
     try {
       const result = await api.post("/notes/save-note", data);
 
-      console.log(result);
+      // console.log(result);
     } catch (err) {
       console.log(err);
     }
@@ -95,7 +95,7 @@ function ViewOngoing({ ongoing, index, count, setCount }) {
       };
       const val = await api.post("/freelancer/progress-updation", data);
 
-      console.log(val);
+      // console.log(val);
     } catch (err) {
       console.log(err);
     }
@@ -114,7 +114,7 @@ function ViewOngoing({ ongoing, index, count, setCount }) {
 
       const val1 = await api.post("/freelancer/save-completed", data);
 
-      console.log(val1.data);
+      // console.log(val1.data);
 
       const data2 = {
         progress: "Completed",
@@ -122,7 +122,7 @@ function ViewOngoing({ ongoing, index, count, setCount }) {
       };
       const val2 = await api.post("/freelancer/progress-updation", data2);
 
-      console.log(val2.data);
+      // console.log(val2.data);
 
       count > 1000 ? setCount(0) : setCount(count + 1);
     } catch (err) {

@@ -2,10 +2,10 @@ import api from "./api";
 
 class ApplicationService {
   async applyToProject(applicationData) {
-    console.log(applicationData);
+    // console.log(applicationData);
     try {
       const response = await api.post("/applications", applicationData);
-      console.log(response);
+      // console.log(response);
 
       return response.data.data;
     } catch (error) {

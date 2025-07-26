@@ -24,7 +24,7 @@ function ListedProject({ list, index, setCount, count }) {
         "/student/project-details-update",
         newData
       );
-      console.log(response);
+      // console.log(response);
       notifySuccess();
       count < 1000 ? setCount(count + 1) : setCount(1);
     } catch (err) {
@@ -39,7 +39,7 @@ function ListedProject({ list, index, setCount, count }) {
         "/student/project-details-deletion",
         list
       );
-      console.log(response);
+      // console.log(response);
       count < 1000 ? setCount(count + 1) : setCount(1);
       notifyInfo();
     } catch (err) {

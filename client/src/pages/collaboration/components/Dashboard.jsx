@@ -28,7 +28,7 @@ export default function Dashboard() {
   // Get applications using custom hook
   const { applications: appliedProjects, loading: applicationsLoading } =
     useMyApplications();
-  console.log(appliedProjects);
+  // console.log(appliedProjects);
 
   useEffect(() => {
     const fetchDashboardData = async () => {

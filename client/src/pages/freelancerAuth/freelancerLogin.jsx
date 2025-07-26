@@ -33,7 +33,7 @@ function FreelancerLogin() {
           withCredentials: true,
         }
       );
-      console.log(response);
+      // console.log(response);
 
       sessionStorage.setItem("freelancerId", response.data.response._id);
       sessionStorage.setItem("freelancerAccToken", response.data.accessToken);

@@ -40,7 +40,7 @@ function PasswordReset() {
           withCredentials: true,
         }
       );
-      console.log(response.data);
+      // console.log(response.data);
       response.status === 200 ? Navigate("/student/login/") : "";
     } catch (err) {
       if (err.response.status === 400 || err.response.status === 401) {
