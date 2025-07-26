@@ -1,6 +1,12 @@
-.landingPageContainer {
-  color: rgba(0, 0, 0, 0.747);
-  max-width: 100%;
-  height: fit-content;
-  background: hsla(210, 90%, 80%, 1);
+.customCreated {
+  display: flex;
+}
+
+@media screen and (max-width: 639px) {
+  .customCreated {
+    display: none;
+  }
+  .no-bg-custom {
+    background: none;
+  }
 }

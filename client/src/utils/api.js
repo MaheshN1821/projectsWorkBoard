@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
+  // baseURL: "https://projects-work-board.vercel.app/",
   baseURL: "https://projects-work-board.vercel.app/",
   withCredentials: true, // Allows cookies to be sent with the request
 });
