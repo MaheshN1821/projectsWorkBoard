@@ -208,12 +208,12 @@ const ManageAccount = () => {
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
                     Tech Stack
                   </label>
-                  <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-white/30">
+                  <div className="p-4 bg-gradient-to-r from-blue-50 to-blue-50 rounded-xl border border-white/30">
                     <div className="flex flex-wrap gap-2">
                       {freelancer.techStack?.split(",").map((tech, index) => (
                         <span
                           key={index}
-                          className="px-3 py-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm rounded-full"
+                          className="px-3 py-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm rounded-full"
                         >
                           {tech.trim()}
                         </span>

@@ -114,7 +114,7 @@ const ProjectsPage = () => {
           {/* Project Header */}
           <div className="flex items-start justify-between mb-4">
             <div className="flex items-center space-x-3 flex-1">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold text-lg">
                   {project.title?.charAt(0) || "P"}
                 </span>
@@ -129,7 +129,7 @@ const ProjectsPage = () => {
               </div>
             </div>
             {isUrgent && (
-              <span className="px-2 py-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full animate-pulse">
+              <span className="px-2 py-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs rounded-full">
                 Urgent
               </span>
             )}
@@ -173,16 +173,16 @@ const ProjectsPage = () => {
                 </span>
               </div>
               <div className="flex items-center space-x-2">
-                <Calendar className="w-4 h-4 text-purple-600" />
+                <Calendar className="w-4 h-4 text-blue-600" />
                 <span className="text-sm text-gray-600">
-                  {daysLeft} days left
+                  {daysLeft < 0 ? 0 : daysLeft} days left
                 </span>
               </div>
             </div>
           </div>
 
           {/* Action Button */}
-          <button className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:shadow-lg transition-all duration-300 group-hover:from-blue-600 group-hover:to-purple-700">
+          <button className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:shadow-lg transition-all duration-300 group-hover:from-blue-600 group-hover:to-blue-700">
             <span className="font-semibold">View Details</span>
             <ChevronRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
           </button>

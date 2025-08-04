@@ -119,7 +119,7 @@ const Client = () => {
       icon: <Plus className="w-6 h-6 text-white" />,
       count: stats.listedProjects,
       path: "/pwb/client/list-project",
-      gradient: "from-blue-500 to-purple-600",
+      gradient: "from-blue-500 to-blue-600",
       bgGradient: "from-blue-50 to-purple-50",
     },
     {
@@ -128,7 +128,7 @@ const Client = () => {
       icon: <Eye className="w-6 h-6 text-white" />,
       count: stats.listedProjects,
       path: "/pwb/client/view-project",
-      gradient: "from-green-500 to-teal-500",
+      gradient: "from-green-500 to-green-600",
       bgGradient: "from-green-50 to-teal-50",
     },
     {
@@ -137,7 +137,7 @@ const Client = () => {
       icon: <BarChart3 className="w-6 h-6 text-white" />,
       count: stats.ongoingProjects,
       path: "/pwb/client/track-project",
-      gradient: "from-orange-500 to-red-500",
+      gradient: "from-orange-500 to-orange-600",
       bgGradient: "from-orange-50 to-red-50",
     },
     {
@@ -146,7 +146,7 @@ const Client = () => {
       icon: <MessageSquare className="w-6 h-6 text-white" />,
       count: stats.pendingRequests,
       path: "/pwb/client/request",
-      gradient: "from-purple-500 to-pink-500",
+      gradient: "from-purple-500 to-purple-500",
       bgGradient: "from-purple-50 to-pink-50",
     },
   ];
@@ -252,10 +252,10 @@ const Client = () => {
             <div
               key={index}
               onClick={() => navigate(item.path)}
-              className="group w-100 cursor-pointer transform hover:scale-105 transition-all duration-300"
+              className="group w-100 cursor-pointer transform transition-all duration-300"
             >
               <div
-                className={`bg-gradient-to-br ${item.bgGradient} rounded-3xl p-6 border border-gray-300 hover:border-none backdrop-blur-sm hover:shadow-2xl transition-all duration-300 relative overflow-hidden`}
+                className={`bg-gradient-to-br ${item.bgGradient} rounded-3xl p-6 border border-gray-300 hover:border-none backdrop-blur-sm transition-all duration-300 relative overflow-hidden`}
               >
                 {/* Background Pattern */}
                 <div className="absolute inset-0 opacity-5">
@@ -271,7 +271,7 @@ const Client = () => {
                       {item.icon}
                     </div>
                     <div
-                      className={`bg-gradient-to-r ${item.gradient} text-white px-3 py-1 rounded-full text-sm font-semibold shadow-md`}
+                      className={`bg-gradient-to-r ${item.gradient} text-white px-3 py-2 rounded-full text-sm font-semibold shadow-md`}
                     >
                       {item.count}
                     </div>

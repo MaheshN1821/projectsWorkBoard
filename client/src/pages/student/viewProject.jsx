@@ -75,7 +75,7 @@ const ViewProject = () => {
         {/* Project Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center space-x-3 flex-1">
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-lg">
                 {project?.title?.charAt(0) || "P"}
               </span>
@@ -108,7 +108,7 @@ const ViewProject = () => {
         {/* Project Meta */}
         <div className="space-y-3 mb-6">
           <div className="flex items-center space-x-2">
-            <Code className="w-4 h-4 text-purple-600" />
+            <Code className="w-4 h-4 text-blue-600" />
             <span className="text-sm text-gray-700 font-medium">Tech:</span>
             <div className="flex flex-wrap gap-1">
               {project?.stack
@@ -117,7 +117,7 @@ const ViewProject = () => {
                 .map((tech, i) => (
                   <span
                     key={i}
-                    className="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-lg"
+                    className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-lg"
                   >
                     {tech.trim()}
                   </span>
@@ -133,7 +133,7 @@ const ViewProject = () => {
               </span>
             </div>
             <div className="flex items-center space-x-2">
-              <Calendar className="w-4 h-4 text-orange-600" />
+              <Calendar className="w-4 h-4 text-blue-600" />
               <span className="text-sm text-gray-600">
                 {isExpired
                   ? `${Math.abs(daysLeft)} days ago`
@@ -214,7 +214,7 @@ const ViewProject = () => {
 
             <button
               onClick={() => navigate("/pwb/client/list-project")}
-              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:shadow-lg transition-all duration-300"
+              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:shadow-lg transition-all duration-300"
             >
               List New Project
             </button>
@@ -236,7 +236,7 @@ const ViewProject = () => {
               </p>
               <button
                 onClick={() => navigate("/client/list-project")}
-                className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:shadow-lg transition-all duration-300"
+                className="px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:shadow-lg transition-all duration-300"
               >
                 List Your First Project
               </button>

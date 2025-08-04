@@ -78,7 +78,7 @@ const TrackProject = () => {
         {/* Project Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center space-x-3 flex-1">
-            <div className="w-12 h-12 bg-gradient-to-r from-blue-300 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg">
               <span className="text-white font-bold text-lg">
                 {project?.title?.charAt(0) || "P"}
               </span>
@@ -98,7 +98,7 @@ const TrackProject = () => {
         {/* Freelancer Info */}
         <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-4 mb-4 border border-blue-100">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-500 rounded-full flex items-center justify-center">
               <span className="text-white font-bold text-sm">
                 {project?.selectedFreelancer?.username?.charAt(0) || "F"}
               </span>
@@ -111,15 +111,15 @@ const TrackProject = () => {
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className="w-3 h-3 text-yellow-400 fill-current"
+                    className="w-3 h-3 text-blue-400 fill-current"
                   />
                 ))}
                 <span className="text-xs text-gray-500 ml-1">4.8</span>
               </div>
             </div>
-            <button className="p-2 bg-white/60 rounded-xl hover:bg-white/80 transition-all duration-300">
+            {/* <button className="p-2 bg-white/60 rounded-xl hover:bg-white/80 transition-all duration-300">
               <MessageCircle className="w-4 h-4 text-blue-600" />
-            </button>
+            </button> */}
           </div>
         </div>
 
@@ -133,7 +133,7 @@ const TrackProject = () => {
           </div>
           <div className="w-full bg-gray-200 rounded-full h-3">
             <div
-              className="bg-gradient-to-r from-blue-500 to-blue-300 h-3 rounded-full transition-all duration-300"
+              className="bg-gradient-to-r from-blue-500 to-blue-400 h-3 rounded-full transition-all duration-300"
               style={{ width: `${progress}%` }}
             ></div>
           </div>
@@ -149,7 +149,7 @@ const TrackProject = () => {
               </span>
             </div>
             <div className="flex items-center space-x-2">
-              <Calendar className="w-4 h-4 text-purple-600" />
+              <Calendar className="w-4 h-4 text-blue-600" />
               <span className="text-sm text-gray-600">
                 {daysLeft} days left
               </span>
@@ -211,7 +211,7 @@ const TrackProject = () => {
             <div className="flex items-center space-x-3">
               <BarChart3 className="w-8 h-8 text-orange-600" />
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-600 bg-clip-text text-transparent">
                   Track Projects
                 </h1>
                 <p className="text-sm text-gray-600">
@@ -236,7 +236,7 @@ const TrackProject = () => {
               </p>
               <button
                 onClick={() => navigate("/client/view-project")}
-                className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:shadow-lg transition-all duration-300"
+                className="px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:shadow-lg transition-all duration-300"
               >
                 View Your Projects
               </button>

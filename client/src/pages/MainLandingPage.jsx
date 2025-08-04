@@ -193,7 +193,7 @@ export default function MainLandingPage() {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="group relative bg-gradient-to-br from-white/80 to-zinc-50/50 backdrop-blur-sm rounded-3xl p-8 border border-gray-300 hover:border-zinc-300/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+                className="group relative bg-gradient-to-br from-white/80 to-zinc-50/50 backdrop-blur-sm rounded-3xl p-8 border border-gray-300 hover:border-zinc-400 transition-all duration-500"
               >
                 {/* Glassmorphism overlay */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -242,7 +242,7 @@ export default function MainLandingPage() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Projects Board */}
-            <div className="group relative bg-gradient-to-br from-zinc-900 to-zinc-700 rounded-3xl p-8 text-white overflow-hidden hover:scale-105 transition-all duration-500 cursor-pointer">
+            <div className="group relative bg-gradient-to-br from-zinc-900 to-zinc-700 rounded-3xl p-8 text-white overflow-hidden transition-all duration-500 cursor-pointer">
               <div className="absolute inset-0 bg-gradient-to-br from-zinc-800/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
               <div className="relative z-10">
@@ -264,7 +264,7 @@ export default function MainLandingPage() {
             </div>
 
             {/* Student Collaboration */}
-            <div className="group relative bg-gradient-to-br from-white to-zinc-50 border-2 border-gray-300 rounded-3xl p-8 overflow-hidden hover:scale-105 transition-all duration-500 cursor-pointer hover:border-zinc-300">
+            <div className="group relative bg-gradient-to-br from-white to-zinc-50 border-2 border-gray-300 rounded-3xl p-8 overflow-hidden transition-all duration-500 cursor-pointer hover:border-zinc-300">
               <div className="absolute inset-0 bg-gradient-to-br from-zinc-100/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
               <div className="relative z-10">
@@ -351,10 +351,10 @@ export default function MainLandingPage() {
             building the future together.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
               href="#choose-main"
-              className="bg-white text-zinc-900 px-8 py-4 rounded-2xl font-semibold hover:bg-zinc-100 transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              className="bg-white w-[80%] text-zinc-900 px-8 py-4 rounded-2xl font-semibold hover:bg-zinc-100 transition-all duration-300"
             >
               Get Started Free
             </a>
