@@ -56,4 +56,3 @@
    ```sh
    npm start
    ```
-9. Remember to create a APP PASSWORD for your preferred email id, and these variables in your .env file : PORT,MONGO_URL,SEC_ACC,SEC_REF,EMAIL_PASS with appropriate values!
